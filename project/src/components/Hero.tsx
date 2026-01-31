@@ -5,7 +5,7 @@ export default function Hero() {
 <section
   id="home"
   className="
-    min-h-[70vh]
+    min-h-[65vh]
     lg:min-h-[85vh]
     w-full
     flex items-center
