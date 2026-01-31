@@ -1,9 +1,9 @@
 /** @type {import('tailwindcss').Config} */
-import defaultTheme from 'tailwindcss/defaultTheme';
+import defaultTheme from "tailwindcss/defaultTheme";
 
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
-  darkMode: 'class',
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
   theme: {
     container: {
       center: true,
@@ -41,23 +41,31 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+
+      // ✅ FONTS (merged here)
       fontFamily: {
-        playfair: ['"Playfair Display"', ...defaultTheme.fontFamily.sans],
-        urbanist: ['"Urbanist"', ...defaultTheme.fontFamily.sans],
-        durer: ['"Durer"', ...defaultTheme.fontFamily.sans],
-      },
+  playfair: ['"Playfair Display"', ...defaultTheme.fontFamily.sans],
+  urbanist: ['"Urbanist"', ...defaultTheme.fontFamily.sans],
+  durer: ['"Durer"', ...defaultTheme.fontFamily.sans],
+  inter: ["Inter", "sans-serif"],
+
+  // ✅ ADD THIS
+  bosch: ["IFBosch", ...defaultTheme.fontFamily.sans],
+},
+
+
       maxWidth: {
         container: "1280px",
       },
       animation: {
-        marquee: 'marquee var(--duration) linear infinite',
+        marquee: "marquee var(--duration) linear infinite",
       },
       keyframes: {
         marquee: {
-          from: { transform: 'translateX(0)' },
-          to: { transform: 'translateX(calc(-100% - var(--gap)))' }
-        }
-      }
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(calc(-100% - var(--gap)))" },
+        },
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

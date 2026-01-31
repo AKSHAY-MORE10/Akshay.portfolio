@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react"
 import { motion } from "framer-motion"
-import { DivideIcon as LucideIcon, Moon, Sun, Github } from "lucide-react"
+import { Moon, Sun } from "lucide-react"
 import { cn } from "../../lib/utils"
 import { useTheme } from "../../context/ThemeContext"
 
@@ -19,18 +19,102 @@ interface NavBarProps {
 
 export function NavBar({ items, className }: NavBarProps) {
   const [activeTab, setActiveTab] = useState(items[0].name)
-  const [isMobile, setIsMobile] = useState(false)
   const { theme, toggleTheme } = useTheme()
 
+  // Handle smooth scrolling and active section detection
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768)
+
+    // Smooth scroll behavior
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      const link = target.closest('a[href^="#"]')
+      
+      if (link) {
+        const href = link.getAttribute('href')
+        if (href && href.startsWith('#')) {
+          e.preventDefault()
+          const id = href.slice(1)
+          const element = document.getElementById(id)
+          
+          if (element) {
+            const offset = 80 // Account for navbar height
+            const elementPosition = element.getBoundingClientRect().top
+            const offsetPosition = elementPosition + window.pageYOffset - offset
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            })
+          }
+        }
+      }
     }
 
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+    // Intersection Observer to detect active section
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -60% 0px',
+      threshold: 0
+    }
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id
+          const matchingItem = items.find(item => item.url === `#${id}`)
+          if (matchingItem) {
+            setActiveTab(matchingItem.name)
+          }
+        }
+      })
+    }
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions)
+
+    // Observe all sections
+    items.forEach((item) => {
+      const id = item.url.slice(1) // Remove #
+      const element = document.getElementById(id)
+      if (element) {
+        observer.observe(element)
+      }
+    })
+
+    // Also observe on scroll for better accuracy
+    let ticking = false
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollPosition = window.scrollY + 100
+          
+          // Check which section is in view
+          for (let i = items.length - 1; i >= 0; i--) {
+            const id = items[i].url.slice(1)
+            const element = document.getElementById(id)
+            if (element) {
+              const { offsetTop, offsetHeight } = element
+              if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+                setActiveTab(items[i].name)
+                break
+              }
+            }
+          }
+          
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    document.addEventListener('click', handleClick)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      document.removeEventListener('click', handleClick)
+      window.removeEventListener('scroll', handleScroll)
+      observer.disconnect()
+    }
+  }, [items])
 
   return (
     <div
@@ -48,7 +132,21 @@ export function NavBar({ items, className }: NavBarProps) {
             <a
               key={item.name}
               href={item.url}
-              onClick={() => setActiveTab(item.name)}
+              onClick={(e) => {
+                e.preventDefault()
+                setActiveTab(item.name)
+                const id = item.url.slice(1)
+                const element = document.getElementById(id)
+                if (element) {
+                  const offset = 80
+                  const elementPosition = element.getBoundingClientRect().top
+                  const offsetPosition = elementPosition + window.pageYOffset - offset
+                  window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                  })
+                }
+              }}
               className={cn(
                 "relative cursor-pointer text-sm font-semibold rounded-full transition-colors",
                 "px-3 py-2 md:px-6",

@@ -1,7 +1,7 @@
 @font-face {
-  font-family: 'Durer','sans-serif';
-  src: local('Durer','sans-serif');  /* This will use the locally installed font */
-  font-weight: normal;
+  font-family: "IFBosch";
+  src: url("./FONT/IFBosch-Regular.ttf") format("truetype");
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -98,3 +98,7 @@ section {
 html {
   scroll-behavior: smooth;
 }
+body {
+  font-family: "Inter", sans-serif;
+}
+

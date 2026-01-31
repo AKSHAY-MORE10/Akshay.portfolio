@@ -1,92 +1,48 @@
 import { TestimonialsSection } from "./blocks/testimonials-with-marquee"
-// client review section
-const testimonials = [
+
+// Base testimonials (single set)
+const baseTestimonials = [
   {
     author: {
-      name: "Emma Thompson",
-      handle: "@emmaai",
-      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face"
+      name: "Rohit Sharma",
+      handle: "@rohitbuilds",
+      avatar:
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
     },
-    text: "Using this AI platform has transformed how we handle data analysis. The speed and accuracy are unprecedented.",
-    href: "https://twitter.com/emmaai"
+    text:
+      "Akshay helped us automate internal workflows that were eating up hours every week.",
   },
   {
     author: {
-      name: "David Park",
-      handle: "@davidtech",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
+      name: "Sneha Kulkarni",
+      handle: "@sneha.designs",
+      avatar:
+        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
     },
-    text: "The API integration is flawless. We've reduced our development time by 60% since implementing this solution.",
-    href: "https://twitter.com/davidtech"
+    text:
+      "He understands both design intent and technical constraints really well.",
   },
   {
     author: {
-      name: "Sofia Rodriguez",
-      handle: "@sofiaml",
-      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face"
+      name: "Aman Verma",
+      handle: "@amanverma",
+      avatar:
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face",
     },
-    text: "Finally, an AI tool that actually understands context! The accuracy in natural language processing is impressive."
+    text:
+      "Fast delivery, clean execution, and solid communication throughout.",
   },
-  {
-    author: {
-      name: "Emma Thompson",
-      handle: "@emmaai",
-      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face"
-    },
-    text: "Using this AI platform has transformed how we handle data analysis. The speed and accuracy are unprecedented.",
-    href: "https://twitter.com/emmaai"
-  },
-  {
-    author: {
-      name: "David Park",
-      handle: "@davidtech",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
-    },
-    text: "The API integration is flawless. We've reduced our development time by 60% since implementing this solution.",
-    href: "https://twitter.com/davidtech"
-  },
-  {
-    author: {
-      name: "Sofia Rodriguez",
-      handle: "@sofiaml",
-      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face"
-    },
-    text: "Finally, an AI tool that actually understands context! The accuracy in natural language processing is impressive."
-  },
-  {
-    author: {
-      name: "Emma Thompson",
-      handle: "@emmaai",
-      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face"
-    },
-    text: "Using this AI platform has transformed how we handle data analysis. The speed and accuracy are unprecedented.",
-    href: "https://twitter.com/emmaai"
-  },
-  {
-    author: {
-      name: "David Park",
-      handle: "@davidtech",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
-    },
-    text: "The API integration is flawless. We've reduced our development time by 60% since implementing this solution.",
-    href: "https://twitter.com/davidtech"
-  },
-  {
-    author: {
-      name: "Sofia Rodriguez",
-      handle: "@sofiaml",
-      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face"
-    },
-    text: "Finally, an AI tool that actually understands context! The accuracy in natural language processing is impressive."
-  }
 ]
+
+// 🔁 repeat testimonials for smooth marquee loop
+const testimonials = Array.from({ length: 3 }, () => baseTestimonials).flat()
 
 export function TestimonialsBlock() {
   return (
     <TestimonialsSection
-      title="Trusted by developers worldwide"
-      description="Join thousands of developers who are already building the future with our AI platform"
+      title="What people say"
+      description="Feedback from clients, collaborators, and teams I’ve worked with"
       testimonials={testimonials}
     />
   )
-} 
+}

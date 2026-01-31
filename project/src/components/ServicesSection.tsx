@@ -1,135 +1,172 @@
 import { motion } from "framer-motion"
-import { Palette, Code, Sparkles, Zap, LineChart, MessageSquare, ArrowRight } from "lucide-react"; // Import necessary icons
-import { Button } from "@/components/ui/button"; // Assuming Button is used
-import { cn } from "@/lib/utils"; // Assuming cn utility is in lib/utils
+import {
+  Code,
+  Zap,
+  Sparkles,
+  LineChart,
+  MessageSquare,
+  ArrowRight,
+  Cpu,
+  Brain,
+} from "lucide-react"
+import { Button } from "@/components/ui/button"
 
-// Animation variants (copy from landing-page.tsx if not globally available)
+// Animations
 const fadeIn = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6 },
+    transition: { duration: 0.7, ease: "easeOut" },
   },
-};
+}
 
 const staggerContainer = {
-  hidden: { opacity: 0 },
+  hidden: {},
   visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
+    transition: { staggerChildren: 0.12 },
   },
-};
+}
 
 const itemFadeIn = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5 },
+    transition: { duration: 0.5, ease: "easeOut" },
   },
-};
+}
 
 export function ServicesSection() {
+  const services = [
+    {
+      icon: <Code className="h-9 w-9" />,
+      title: "Web Development",
+      description:
+        "Fast, responsive, and scalable websites built with modern frameworks and clean architecture.",
+    },
+    {
+      icon: <Zap className="h-9 w-9" />,
+      title: "Automation Systems",
+      description:
+        "Automation workflows that reduce manual effort and help businesses move faster.",
+    },
+    {
+      icon: <Brain className="h-9 w-9" />,
+      title: "AI & Machine Learning",
+      description:
+        "Applied AI & ML solutions — from intelligent features to data-driven systems that solve real problems.",
+    },
+    {
+      icon: <Cpu className="h-9 w-9" />,
+      title: "AI Integrations",
+      description:
+        "Integrating AI into products and workflows using APIs, models, and automation pipelines.",
+    },
+    {
+      icon: <LineChart className="h-9 w-9" />,
+      title: "Systems & Scalability",
+      description:
+        "Designing systems that scale reliably, with long-term performance and maintainability in mind.",
+    },
+    {
+      icon: <MessageSquare className="h-9 w-9" />,
+      title: "Content Creation",
+      description:
+        "Creating content around development, automation, AI, and building in public.",
+    },
+  ]
+
   return (
-    <section id="services" className="w-full py-12 md:py-24 lg:py-30">
+    <section
+      id="services"
+      className="relative w-full py-16 md:py-24 lg:py-28 font-inter"
+    >
+      {/* subtle animated background */}
+      <motion.div
+        aria-hidden
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="pointer-events-none absolute inset-0 -z-10"
+      >
+        <div className="absolute left-1/4 top-1/4 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
+        <div className="absolute right-1/4 bottom-1/4 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
+      </motion.div>
+
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "-100px" }}
         variants={fadeIn}
-        className="container px-4 md:px-6 border border-muted rounded-3xl bg-muted/20"
+        className="container mx-auto max-w-7xl rounded-3xl border border-muted bg-muted/20 px-6 py-12 sm:px-10 sm:py-16"
       >
-        <div className="flex flex-col items-center justify-center space-y-4 text-center pt-10">
-          <div className="space-y-3">
-            {/* <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="inline-block rounded-3xl bg-muted px-3 py-1 text-sm"
-            >
-              Services
-            </motion.div> */}
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-3xl text-gray-300 tracking-tighter sm:text-4xl md:text-5xl"
-            >
-              What We Do
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="mx-auto max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed"
-            >
-              We offer a comprehensive range of design and development services to help your business thrive
-            </motion.p>
-          </div>
+        {/* Header */}
+        <div className="mx-auto max-w-3xl text-center space-y-4">
+          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
+            What I Do
+          </h2>
+          <p className="text-muted-foreground text-base sm:text-lg font-normal">
+            I work across web development, automation, and AI — building systems
+            that are practical, scalable, and impact-driven.
+          </p>
         </div>
+
+        {/* Cards */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mx-auto grid max-w-5xl items-center gap-3 py-12 md:grid-cols-2 lg:grid-cols-3"
+          className="mx-auto mt-14 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {[{
-            icon: <Palette className="h-10 w-10 text-primary" />,
-            title: "UI/UX Design",
-            description:
-              "We create intuitive, engaging user experiences that delight your customers and drive conversions.",
-          }, {
-            icon: <Code className="h-10 w-10 text-primary" />,
-            title: "Web Development",
-            description:
-              "Our developers build fast, responsive, and accessible websites that work across all devices.",
-          }, {
-            icon: <Sparkles className="h-10 w-10 text-primary" />,
-            title: "Brand Identity",
-            description:
-              "We craft distinctive brand identities that communicate your values and resonate with your audience.",
-          }, {
-            icon: <Zap className="h-10 w-10 text-primary" />,
-            title: "Mobile Apps",
-            description: "We design and develop native and cross-platform mobile applications that users love.",
-          }, {
-            icon: <LineChart className="h-10 w-10 text-primary" />,
-            title: "Digital Marketing",
-            description:
-              "We help you reach your target audience and grow your business with data-driven marketing strategies.",
-          }, {
-            icon: <MessageSquare className="h-10 w-10 text-primary" />,
-            title: "Content Creation",
-            description: "We produce engaging content that tells your story and connects with your customers.",
-          },].map((service, index) => (
+          {services.map((service, index) => (
             <motion.div
               key={index}
               variants={itemFadeIn}
-              whileHover={{ y: -10, transition: { duration: 0.3 } }}
-              className="group relative overflow-hidden rounded-3xl border p-6 shadow-sm transition-all hover:shadow-md bg-background/80"
+              whileHover={{ y: -8 }}
+              transition={{ type: "spring", stiffness: 260, damping: 20 }}
+              className="group relative overflow-hidden rounded-3xl border bg-background/80 p-6 shadow-sm"
             >
-              <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-all duration-300"></div>
-              <div className="relative space-y-3">
-                <div className="mb-4">{service.icon}</div>
-                <h3 className="text-xl font-bold">{service.title}</h3>
-                <p className="text-muted-foreground">{service.description}</p>
+              {/* hover glow */}
+              <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-primary/20 blur-2xl" />
               </div>
-              <div className="mt-4 flex items-center justify-between">
-                <a href="#" className="text-sm font-medium text-primary underline-offset-4 hover:underline">
-                  Learn more
-                </a>
-                <motion.div whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
-                  <ArrowRight className="h-4 w-4 text-primary" />
-                </motion.div>
+
+              <div className="relative space-y-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                  {service.icon}
+                </div>
+
+                <h3 className="text-lg font-semibold tracking-tight">
+                  {service.title}
+                </h3>
+
+                <p className="text-sm leading-relaxed text-muted-foreground font-normal">
+                  {service.description}
+                </p>
+
+                <div className="pt-2 flex items-center gap-2 text-sm font-medium text-primary">
+                  <span>Explore</span>
+                  <motion.span
+                    whileHover={{ x: 4 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                  >
+                    <ArrowRight className="h-4 w-4" />
+                  </motion.span>
+                </div>
               </div>
             </motion.div>
           ))}
         </motion.div>
+
+        {/* CTA */}
+        <div className="mt-16 flex justify-center">
+          <Button size="lg" className="rounded-full font-medium">
+            Let’s build something
+          </Button>
+        </div>
       </motion.div>
     </section>
-  );
-} 
+  )
+}

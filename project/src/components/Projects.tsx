@@ -1,7 +1,8 @@
-import React from 'react';
-import { useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { cn } from "@/lib/utils";
+import React, { useRef, useState } from "react"
+import { AnimatePresence, motion } from "framer-motion"
+import { cn } from "@/lib/utils"
+
+// ---------------- CARD ----------------
 
 export const Card = ({
   imageUrl,
@@ -10,130 +11,156 @@ export const Card = ({
   imageClassName,
   contentClassName,
 }: {
-  imageUrl: string;
-  children: React.ReactNode;
-  className?: string;
-  imageClassName?: string;
-  contentClassName?: string;
+  imageUrl: string
+  children: React.ReactNode
+  className?: string
+  imageClassName?: string
+  contentClassName?: string
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null)
   const [direction, setDirection] = useState<
     "top" | "right" | "bottom" | "left"
-  >("left");
+  >("left")
 
   const getDirection = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    e: React.MouseEvent<HTMLDivElement>,
     element: HTMLElement
   ) => {
-    const { width, height, left, top } = element.getBoundingClientRect();
-    const x = e.clientX - left - (width / 2) * (width > height ? height / width : 1);
-    const y = e.clientY - top - (height / 2) * (height > width ? width / height : 1);
-    const d = Math.round(Math.atan2(y, x) / 1.57079633 + 5) % 4;
-    return d;
-  };
+    const { width, height, left, top } = element.getBoundingClientRect()
+    const x = e.clientX - left - width / 2
+    const y = e.clientY - top - height / 2
+    const d = Math.round(Math.atan2(y, x) / 1.57079633 + 5) % 4
+    return ["top", "right", "bottom", "left"][d]
+  }
 
-  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (!ref.current) return;
-    const dir = getDirection(e, ref.current);
-    const dirMap = ["top", "right", "bottom", "left"];
-    setDirection(dirMap[dir] as "top" | "right" | "bottom" | "left");
-  };
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return
+    setDirection(getDirection(e, ref.current))
+  }
 
   return (
     <motion.div
       ref={ref}
       onMouseEnter={handleMouseEnter}
       className={cn(
-        "relative group/card overflow-hidden rounded-xl w-56 h-56 md:w-80 md:h-80 border border-muted",
+        "group relative overflow-hidden rounded-2xl border border-muted bg-background shadow-sm",
+        "h-[240px] sm:h-[280px] md:h-[320px]",
         className
       )}
     >
       <AnimatePresence mode="wait">
         <motion.div
-          className="relative w-full h-full"
+          className="relative h-full w-full"
           initial="initial"
           whileHover={direction}
           exit="exit"
         >
-          <motion.div className="group-hover/card:block hidden absolute inset-0 bg-black/40 z-10 transition duration-500" />
+          {/* Overlay */}
+          <div className="absolute inset-0 z-10 bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:opacity-0 sm:group-hover:opacity-100" />
+
+          {/* Image */}
           <motion.div
             variants={imageVariants}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className={cn("h-full w-full relative bg-gray-100 dark:bg-gray-900", imageClassName)}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="absolute inset-0"
           >
-            {/* Replace with actual Image component and src if using Next.js Image */}
             <img
-              alt="Card image"
-              className={cn("h-full w-full object-cover scale-[1.15]", imageClassName)}
-              src={imageUrl} // Use imageUrl prop
+              src={imageUrl}
+              alt="Project preview"
+              className={cn(
+                "h-full w-full object-cover scale-110 transition-transform duration-500 group-hover:scale-105",
+                imageClassName
+              )}
             />
           </motion.div>
+
+          {/* Content */}
           <motion.div
             variants={textVariants}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className={cn("absolute bottom-4 left-4 text-white z-40", contentClassName)}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className={cn(
+              "absolute bottom-4 left-4 right-4 z-20",
+              "text-white",
+              "opacity-100 sm:opacity-0 sm:group-hover:opacity-100",
+              contentClassName
+            )}
           >
             {children}
           </motion.div>
         </motion.div>
       </AnimatePresence>
     </motion.div>
-  );
-};
+  )
+}
 
-// Animation Variants
+// ---------------- ANIMATIONS ----------------
+
 const imageVariants = {
   initial: { x: 0, y: 0 },
+  top: { y: 16 },
+  bottom: { y: -16 },
+  left: { x: 16 },
+  right: { x: -16 },
   exit: { x: 0, y: 0 },
-  top: { y: 20 },
-  bottom: { y: -20 },
-  left: { x: 20 },
-  right: { x: -20 },
-};
+}
 
 const textVariants = {
-  initial: { x: 0, y: 0, opacity: 0 },
-  exit: { x: 0, y: 0, opacity: 0 },
-  top: { y: -20, opacity: 1 },
-  bottom: { y: 2, opacity: 1 },
-  left: { x: -2, opacity: 1 },
-  right: { x: 20, opacity: 1 },
-};
+  initial: { opacity: 0, y: 10 },
+  top: { opacity: 1, y: -8 },
+  bottom: { opacity: 1, y: 0 },
+  left: { opacity: 1, x: -6 },
+  right: { opacity: 1, x: 6 },
+  exit: { opacity: 0 },
+}
 
-export default function Page() {
+// ---------------- PROJECTS SECTION ----------------
+
+export default function ProjectsSection() {
   return (
-    <section id="projects" className="w-full py-12 md:py-24 lg:py-30">
-      <div className="container px-4 md:px-6 border border-muted rounded-3xl bg-muted/20 py-10">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center py-10">
-          <h2 className="text-3xl font-simebolt tracking-tighter sm:text-4xl md:text-6xl">My Projects</h2>
-          <p className="mx-auto max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-            Here are some of the projects I have worked on.
+    <section id="projects" className="w-full py-16 md:py-10">
+      <div className="container max-w-7xl rounded-3xl border border-muted bg-muted/20 px-6 py-12 md:px-10">
+        
+        {/* Header */}
+        <div className="mx-auto max-w-3xl text-center space-y-4">
+          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
+            My Projects
+          </h2>
+          <p className="text-muted-foreground text-base sm:text-lg">
+            A selection of projects where I explored web development, automation,
+            and system design.
           </p>
         </div>
-        <div className="mx-auto grid max-w-5xl items-center justify-center gap-10 py-12 lg:grid-cols-3">
-          {/* Project Card 1 */}
-          <Card imageUrl="https://images.pexels.com/photos/12341218/pexels-photo-12341218.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
+
+        {/* Grid */}
+        <div className="mx-auto mt-14 grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <Card imageUrl="https://images.pexels.com/photos/12341218/pexels-photo-12341218.jpeg">
             <div>
-              <h3 className="text-xl font-bold">Project 1 Title</h3>
-              <p className="text-sm text-neutral-300">Project 1 description.</p>
+              <h3 className="text-lg font-semibold">Automation Dashboard</h3>
+              <p className="text-sm text-neutral-300">
+                Workflow automation & internal tooling
+              </p>
             </div>
           </Card>
-          {/* Project Card 2 */}
-          <Card imageUrl="https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
+
+          <Card imageUrl="https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg">
             <div>
-              <h3 className="text-xl font-bold">Project 2 Title</h3>
-              <p className="text-sm text-neutral-300">Project 2 description.</p>
+              <h3 className="text-lg font-semibold">AI Web Platform</h3>
+              <p className="text-sm text-neutral-300">
+                Smart features powered by AI APIs
+              </p>
             </div>
           </Card>
-          {/* Project Card 3 */}
-          <Card imageUrl="https://images.pexels.com/photos/831243/pexels-photo-831243.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
+
+          <Card imageUrl="https://images.pexels.com/photos/831243/pexels-photo-831243.jpeg">
             <div>
-              <h3 className="text-xl font-bold">Project 3 Title</h3>
-              <p className="text-sm text-neutral-300">Project 3 description.</p>
+              <h3 className="text-lg font-semibold">SaaS Landing Page</h3>
+              <p className="text-sm text-neutral-300">
+                High-conversion marketing website
+              </p>
             </div>
           </Card>
         </div>
       </div>
     </section>
-  );
-} 
+  )
+}

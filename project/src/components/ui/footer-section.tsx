@@ -1,123 +1,84 @@
-'use client';
+'use client'
 
-import React from 'react';
-import type { ComponentProps, ReactNode } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
-import { FacebookIcon, FrameIcon, InstagramIcon, LinkedinIcon, YoutubeIcon, MailIcon } from 'lucide-react';
-
-interface FooterLink {
-	title: string;
-	href: string;
-	icon?: React.ComponentType<{ className?: string }>;
-}
-
-interface FooterSection {
-	label: string;
-	links: FooterLink[];
-}
-
-const footerLinks: FooterSection[] = [
-	{
-		label: 'Product',
-		links: [
-			{ title: 'Features', href: '#features' },
-			{ title: 'Pricing', href: '#pricing' },
-			{ title: 'Testimonials', href: '#testimonials' },
-			{ title: 'Integration', href: '/' },
-		],
-	},
-	{
-		label: 'Company',
-		links: [
-			{ title: 'FAQs', href: '/faqs' },
-			{ title: 'About Us', href: '/about' },
-			{ title: 'Privacy Policy', href: '/privacy' },
-			{ title: 'Terms of Services', href: '/terms' },
-		],
-	},
-	{
-		label: 'Resources',
-		links: [
-			{ title: 'Blog', href: '/blog' },
-			{ title: 'Changelog', href: '/changelog' },
-			{ title: 'Brand', href: '/brand' },
-			{ title: 'Help', href: '/help' },
-		],
-	},
-	{
-		label: 'Social Links',
-		links: [
-			{ title: 'Facebook', href: '#', icon: FacebookIcon },
-			{ title: 'Instagram', href: '#', icon: InstagramIcon },
-			{ title: 'Youtube', href: '#', icon: YoutubeIcon },
-			{ title: 'LinkedIn', href: '#', icon: LinkedinIcon },
-			{ title: 'Mail', href: 'mailto:akshaybapumore@gmail.com', icon: MailIcon },
-		],
-	},
-];
+import { GithubIcon, LinkedinIcon, MailIcon } from 'lucide-react'
 
 export function Footer() {
-	return (
-		<footer className="md:rounded-t-6xl relative w-full max-w-6xl mx-auto flex flex-col items-center justify-center rounded-t-4xl border-t bg-[radial-gradient(35%_128px_at_50%_0%,theme(backgroundColor.white/8%),transparent)] px-6 py-12 lg:py-16">
-			<div className="bg-foreground/20 absolute top-0 right-1/2 left-1/2 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full blur" />
+  return (
+    <footer className="w-full border-t border-muted bg-muted/20 px-6 py-14">
+      <div className="mx-auto max-w-6xl grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+        
+        {/* Brand */}
+        <div className="space-y-4">
+          <h3 className="text-xl font-semibold tracking-tight">
+            Akshay
+          </h3>
+          <p className="text-sm text-muted-foreground max-w-xs">
+            I’m Akshay — a Web Developer, automation builder, and AI explorer.
+            Thanks for visiting my portfolio!
+          </p>
 
-			<div className="grid w-full gap-8 xl:grid-cols-3 xl:gap-8">
-				<AnimatedContainer className="space-y-4">
-					<FrameIcon className="size-8" />
-					<p className="text-muted-foreground mt-8 text-sm md:mt-0">
-						© {new Date().getFullYear()} Asme. All rights reserved.
-					</p>
-				</AnimatedContainer>
+          <p className="text-xs text-muted-foreground pt-4">
+            © {new Date().getFullYear()} Akshay More
+          </p>
 
-				<div className="mt-10 grid grid-cols-2 gap-8 md:grid-cols-4 xl:col-span-2 xl:mt-0">
-					{footerLinks.map((section, index) => (
-						<AnimatedContainer key={section.label} delay={0.1 + index * 0.1}>
-							<div className="mb-10 md:mb-0">
-								<h3 className="text-xs">{section.label}</h3>
-								<ul className="text-muted-foreground mt-4 space-y-2 text-sm">
-									{section.links.map((link) => (
-										<li key={link.title}>
-											<a
-												href={link.href}
-												className="hover:text-foreground inline-flex items-center transition-all duration-300"
-											>
-												{link.icon && <link.icon className="me-1 size-4" />}
-												{link.title}
-											</a>
-										</li>
-									))}
-								</ul>
-							</div>
-						</AnimatedContainer>
-					))}
-				</div>
-			</div>
-		</footer>
-	);
-};
+          {/* Socials */}
+          <div className="flex items-center gap-4 pt-2">
+            <a
+              href="https://www.linkedin.com/in/akshaymore10"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition"
+            >
+              <LinkedinIcon className="h-5 w-5" />
+            </a>
+            <a
+              href="https://github.com/AKSHAY-MORE10"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition"
+            >
+              <GithubIcon className="h-5 w-5" />
+            </a>
+            <a
+              href="mailto:akshaybapumore@gmail.com"
+              className="text-muted-foreground hover:text-foreground transition"
+            >
+              <MailIcon className="h-5 w-5" />
+            </a>
+          </div>
+        </div>
 
-type ViewAnimationProps = {
-	delay?: number;
-	className?: ComponentProps<typeof motion.div>['className'];
-	children: ReactNode;
-};
+        {/* General */}
+        <div className="space-y-3">
+          <h4 className="text-sm font-medium">General</h4>
+          <ul className="space-y-2 text-sm text-muted-foreground">
+            <li><a href="#home" className="hover:text-foreground">Home</a></li>
+            <li><a href="#about" className="hover:text-foreground">About</a></li>
+            <li><a href="#projects" className="hover:text-foreground">Projects</a></li>
+            <li><a href="#blog" className="hover:text-foreground">Blog</a></li>
+          </ul>
+        </div>
 
-function AnimatedContainer({ className, delay = 0.1, children }: ViewAnimationProps) {
-	const shouldReduceMotion = useReducedMotion();
+        {/* Specifics */}
+        <div className="space-y-3">
+          <h4 className="text-sm font-medium">Specifics</h4>
+          <ul className="space-y-2 text-sm text-muted-foreground">
+            <li><a href="#toolbox" className="hover:text-foreground">Toolbox</a></li>
+            <li><a href="#events" className="hover:text-foreground">Events & Hackathons</a></li>
+            <li><a href="#community" className="hover:text-foreground">Community Wall</a></li>
+          </ul>
+        </div>
 
-	if (shouldReduceMotion) {
-		return children;
-	}
-
-	return (
-		<motion.div
-			initial={{ filter: 'blur(4px)', translateY: -8, opacity: 0 }}
-			whileInView={{ filter: 'blur(0px)', translateY: 0, opacity: 1 }}
-			viewport={{ once: true }}
-			transition={{ delay, duration: 0.8 }}
-			className={className}
-		>
-			{children}
-		</motion.div>
-	);
-}; 
+        {/* Extra */}
+        <div className="space-y-3">
+          <h4 className="text-sm font-medium">Extra</h4>
+          <ul className="space-y-2 text-sm text-muted-foreground">
+            <li><a href="#experience" className="hover:text-foreground">Experiences</a></li>
+            <li><a href="#skills" className="hover:text-foreground">Skills</a></li>
+            <li><a href="#links" className="hover:text-foreground">Links</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  )
+}

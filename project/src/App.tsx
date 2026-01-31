@@ -1,37 +1,30 @@
-import React from 'react';
-import { Home, User, Briefcase, FileText, Github } from 'lucide-react';
+import { Home, User, Briefcase, FileText } from 'lucide-react';
 import { NavBar } from './components/ui/tubelight-navbar';
 import { ThemeProvider } from './context/ThemeContext';
 import { SplashCursor } from './components/ui/splash-cursor';
 import { AboutSection } from './components/ui/about';
-import { Design } from './demo';
 import Hero from './components/Hero';
 import { Footer } from './components/ui/footer-section';
 import { TimelineSection } from './components/TimelineSection';
 import { ServicesSection } from './components/ServicesSection';
-import { MessagingLikeQnaPreview } from './components/FaqSection';
 import { TestimonialsBlock } from './components/TestimonialsBlock';
-import { ChatButton } from './components/ui/chat-button';
-import { MiniChat } from './components/ui/mini-chat';
 import Projects from './components/Projects';
+import { ContactSimpleForm } from './api/Contact';
+
+
 
 function App() {
   const navItems = [
     { name: 'Home', url: '#home', icon: Home },
     { name: 'About', url: '#about', icon: User },
     { name: 'Projects', url: '#projects', icon: Briefcase },
-    { name: 'Resume', url: '#resume', icon: FileText },
+    { name: 'Contact', url: '#contact', icon: FileText },
   ];
 
-  const [isChatOpen, setIsChatOpen] = React.useState(false);
-
-  const toggleChat = () => {
-    setIsChatOpen(!isChatOpen);
-  };
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
+      <div className="min-h-screen bg-[#fff8dc] dark:bg-background/90 text-foreground relative overflow-hidden">
         <SplashCursor />
         <div className="relative z-10">
           <NavBar items={navItems} className='h-fit'/>
@@ -46,9 +39,11 @@ function App() {
             {/* <MessagingLikeQnaPreview /> */}
             <Projects />
             <TestimonialsBlock />
+            <ContactSimpleForm />
           </main>
+          <Footer/>
         </div>
-        <Footer/>
+        {/* <Footer/> */}
         {/* <ChatButton onClick={toggleChat} /> */}
         {/* <MiniChat isOpen={isChatOpen} onClose={toggleChat} /> */}
       </div>

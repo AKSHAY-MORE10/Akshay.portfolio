@@ -20,7 +20,7 @@ export function TestimonialsSection({
 }: TestimonialsSectionProps) {
   return (
     <section className={cn(
-      "px-4 py-16 sm:py-28 md:py-36 md:mb-12 ",
+      "px-4 py-16 sm:py-28 md:py-20 md:mb-12 ",
       className
     )}>
       <div className="mx-auto flex max-w-container flex-col items-center gap-4 text-center sm:gap-16">

@@ -1,79 +1,115 @@
-import React from "react";
 import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from "react-icons/fa";
-import { useTheme } from "../context/ThemeContext";
 
 export default function Hero() {
-  // No need to use theme for background/text color here
   return (
-    <div id="home" className="min-h-[85vh] w-full px-4 sm:px-6 lg:px-8 pt-10  pb-32 flex items-center justify-start relative">
-      {/* Hero section */}
-      <div className="w-full max-w-1xl mx-auto text-left space-y-8 md:mt-20 md:ml-10 lg:ml-30">
-        {/* Main Hero Text */}
-        <h1 className="text-3xl text-gray-200 sm:text-4xl md:text-5xl lg:text-7xl font-light leading-tight">
-  <span className="font-semibold italic">We build madness.</span><br />
- <span className="font-semibold italic">Half human, half caffeine — all genius.</span> <br />
-  <span className="font-semibold italic">Slide into our inbox before reality <br /> collapses.</span>
-</h1>
-
-
-        {/* Sub Text */}
-        <p className="text-sm sm:text-base md:text-lg max-w-md">
-          I help teams build, scale, and release great products that feel {" "}
-          <span className="bg-lime-200 text-black px-1 rounded">natural</span>.
-        </p>
-
-        {/* Buttons */}
-        <div className="flex flex-wrap gap-4 mt-6">
-          <button className="border px-4 py-2 rounded-full transition whitespace-nowrap  text-sm sm:text-base md:text-sm">
-            Blog
-          </button>
-          <button
-            className="px-5 py-2 rounded-full transition whitespace-nowrap bg-gray-200 text-black hover:bg-white text-sm sm:text-base md:text-sm"
+    <section
+      id="home"
+      className="min-h-[85vh] w-full flex items-center px-6 sm:px-10 lg:px-20"
+    >
+      <div className="w-full max-w-7xl mx-auto">
+        <div className="max-w-4xl space-y-8">
+          {/* Hero Heading */}
+          <h1
+            className="font-bosch font-light tracking-tight leading-tight
+             text-3xl sm:text-4xl md:text-5xl lg:text-6xl
+             text-gray-800 dark:text-gray-200"
           >
-            Get in touch
-          </button>
-        </div>
+            <span className="font-semibold block ">
+              We build madness.
+            </span>
 
-        {/* Author Info */}
-        {/* <div className="mt-8 md:mt-10 py-8 md:py-8 space-y-1">
-          <h2 className="font-medium text-sm sm:text-xl md:text-xl">Akshay More</h2>
-          <p className="text-sm sm:text-base">
-            Machine Learning Engineer @ <span className="italic">Google</span>
-          </p> */}
+            <span className="font-semibold  block">
+              Half human, half caffeine — all genius.
+            </span>
 
-          {/* Social Icons */}
-          {/* <div className="flex space-x-5 py-2 text-sm sm:text-xl">
+            <span className="font-semibold  block">
+              Slide into our inbox before reality collapses.
+            </span>
+          </h1>
+
+          {/* Sub Text */}
+          <p
+            className="text-sm sm:text-base md:text-lg max-w-xl
+                       text-gray-600 dark:text-gray-400"
+          >
+            I help teams build, scale, and release great products that feel{" "}
+            <span
+              className="bg-lime-300/80 dark:bg-lime-200
+                             text-gray-900 px-1 rounded"
+            >
+              natural
+            </span>
+            .
+          </p>
+
+          {/* Buttons */}
+          <div className="flex flex-wrap gap-4 pt-2">
+            <button
+              className="border border-gray-300 dark:border-gray-500
+                         text-gray-700 dark:text-gray-200
+                         px-5 py-2 rounded-full text-sm
+                         hover:border-gray-500 dark:hover:border-gray-300
+                         transition"
+            >
+              Blog
+            </button>
+
+            <a
+              href="https://cal.com/akshay-more-hzl9du/business-growth-with-ai-1-1-discovery-call?user=akshay-more-hzl9du&duration=15&overlayCalendar=true"
+              target="_blank"
+              rel="noreferrer"
+              className="bg-gray-200/80 dark:bg-gray-200
+                         text-gray-900
+                         px-6 py-2 rounded-full text-sm
+                         hover:bg-gray-300/80 transition
+                         inline-block
+                         hover:bg-gray-300/80 dark:hover:bg-gray-300/80 transition"
+            >
+              Get in touch
+            </a>
+          </div>
+
+          {/* Social Links */}
+          <div
+            className="flex gap-6 pt-2 text-lg
+                       text-gray-600 dark:text-gray-400"
+          >
             <a
               href="https://github.com/AKSHAY-MORE10"
               target="_blank"
               rel="noreferrer"
+              className="hover:text-gray-800 dark:hover:text-gray-200 transition"
             >
-              <FaGithub className="hover:text-gray-400 transition" />
+              <FaGithub />
             </a>
-            <a
-              href="https://www.linkedin.com/in/akshaymore10?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FaLinkedin className="hover:text-blue-400 transition" />
-            </a>
-            <a
-              href="https://www.instagram.com/tf.akshhh?igsh=cnkxeHF1OTFicHcz&utm_source=qr"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FaInstagram className="hover:text-pink-400 transition" />
-            </a>
-            <a href="mailto:akshaybapumore@gmail.com">
-              <FaEnvelope className="hover:text-red-400 transition" />
-            </a>
-          </div> */}
 
+            <a
+              href="https://www.linkedin.com/in/akshaymore10"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-blue-600 transition"
+            >
+              <FaLinkedin />
+            </a>
+
+            <a
+              href="https://www.instagram.com/tf.akshhh"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-pink-500 transition"
+            >
+              <FaInstagram />
+            </a>
+
+            <a
+              href="mailto:akshaybapumore@gmail.com"
+              className="hover:text-red-500 transition"
+            >
+              <FaEnvelope />
+            </a>
+          </div>
         </div>
-
-
       </div>
-
-    // </div>
+    </section>
   );
 }
