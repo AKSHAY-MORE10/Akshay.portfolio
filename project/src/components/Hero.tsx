@@ -2,30 +2,43 @@ import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from "react-icons/fa";
 
 export default function Hero() {
   return (
-    <section
-      id="home"
-      className="min-h-[85vh] w-full flex items-center px-6 sm:px-10 lg:px-20"
-    >
+<section
+  id="home"
+  className="
+    min-h-[70vh]
+    lg:min-h-[85vh]
+    w-full
+    flex items-center
+    px-6 sm:px-10 lg:px-20
+    pt-6 sm:pt-0
+  "
+>
+
+
       <div className="w-full max-w-7xl mx-auto">
         <div className="max-w-4xl space-y-8">
           {/* Hero Heading */}
           <h1
-            className="font-bosch font-light tracking-tight leading-tight
-             text-3xl sm:text-4xl md:text-5xl lg:text-6xl
-             text-gray-800 dark:text-gray-200"
-          >
-            <span className="font-semibold block ">
-              We build madness.
-            </span>
+  className="
+    font-bosch font-light tracking-tight
+    leading-snug sm:leading-tight
+    text-[2.1rem] sm:text-4xl md:text-5xl lg:text-6xl
+    text-gray-800 dark:text-gray-200
+  "
+>
+  <span className="font-semibold block">
+    We build madness.
+  </span>
 
-            <span className="font-semibold  block">
-              Half human, half caffeine — all genius.
-            </span>
+  <span className="font-semibold block">
+    Half human, half caffeine — all genius.
+  </span>
 
-            <span className="font-semibold  block">
-              Slide into our inbox before reality collapses.
-            </span>
-          </h1>
+  <span className="font-semibold block">
+    Slide into our inbox before reality collapses.
+  </span>
+</h1>
+
 
           {/* Sub Text */}
           <p
