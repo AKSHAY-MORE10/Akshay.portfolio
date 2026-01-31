@@ -44,14 +44,14 @@ export default {
 
       // ✅ FONTS (merged here)
       fontFamily: {
-  playfair: ['"Playfair Display"', ...defaultTheme.fontFamily.sans],
-  urbanist: ['"Urbanist"', ...defaultTheme.fontFamily.sans],
-  durer: ['"Durer"', ...defaultTheme.fontFamily.sans],
-  inter: ["Inter", "sans-serif"],
+        playfair: ['"Playfair Display"', ...defaultTheme.fontFamily.sans],
+        urbanist: ['"Urbanist"', ...defaultTheme.fontFamily.sans],
+        durer: ['"Durer"', ...defaultTheme.fontFamily.sans],
+        inter: ["Inter", "sans-serif"],
 
-  // ✅ ADD THIS
-  bosch: ["IFBosch", ...defaultTheme.fontFamily.sans],
-},
+        // ✅ ADD THIS
+        bosch: ["IFBosch", ...defaultTheme.fontFamily.sans],
+      },
 
 
       maxWidth: {
