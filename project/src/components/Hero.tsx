@@ -22,7 +22,7 @@ export default function Hero() {
   className="
     font-bosch font-light tracking-tight
     leading-snug sm:leading-tight
-    text-[2.1rem] sm:text-4xl md:text-5xl lg:text-6xl
+    text-[2.35rem] sm:text-4xl md:text-5xl lg:text-6xl
     text-gray-800 dark:text-gray-200
   "
 >
@@ -38,6 +38,7 @@ export default function Hero() {
     Slide into our inbox before reality collapses.
   </span>
 </h1>
+
 
 
           {/* Sub Text */}
