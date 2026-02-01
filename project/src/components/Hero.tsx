@@ -45,7 +45,7 @@ export default function Hero() {
           <p
             className="text-sm sm:text-base md:text-lg max-w-xl
                        text-gray-600 dark:text-gray-400
-                       pt-4"
+                       lg:pt-4"
           >
             I help teams build, scale, and release great products that feel{" "}
             <span
