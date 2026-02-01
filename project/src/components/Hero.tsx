@@ -85,7 +85,7 @@ export default function Hero() {
 
           {/* Social Links */}
           <div
-            className="flex gap-6 pt-2 text-lg
+            className="flex gap-6 pt-4 text-lg
                        text-gray-600 dark:text-gray-400"
           >
             <a
