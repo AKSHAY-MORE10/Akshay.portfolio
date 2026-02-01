@@ -22,7 +22,7 @@ export default function Hero() {
   className="
     font-bosch font-light tracking-tight
     leading-snug sm:leading-tight
-    text-[2.35rem] sm:text-4xl md:text-5xl lg:text-7xl
+    text-[2.35rem] sm:text-4xl md:text-5xl lg:text-8xl
     text-gray-800 dark:text-gray-200
   "
 >
