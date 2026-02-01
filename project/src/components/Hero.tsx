@@ -15,7 +15,7 @@ export default function Hero() {
 >
 
 
-      <div className="w-full max-w-7xl mx-auto">
+      <div className="w-full max-w-6xl mx-auto">
         <div className="max-w-6xl space-y-2">
           {/* Hero Heading */}
           <h1
