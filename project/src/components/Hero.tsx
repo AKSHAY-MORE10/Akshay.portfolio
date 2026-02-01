@@ -44,7 +44,8 @@ export default function Hero() {
           {/* Sub Text */}
           <p
             className="text-sm sm:text-base md:text-lg max-w-xl
-                       text-gray-600 dark:text-gray-400"
+                       text-gray-600 dark:text-gray-400
+                       pt-4"
           >
             I help teams build, scale, and release great products that feel{" "}
             <span
