@@ -42,7 +42,7 @@ function App() {
             <TestimonialsBlock />
             <ContactSimpleForm />
           </main>
-          {/* <Footer/> */}
+          <Footer/>
         </div>
         {/* <Footer/> */}
         {/* <ChatButton onClick={toggleChat} /> */}
