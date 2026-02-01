@@ -57,7 +57,8 @@ export default function Hero() {
           </p>
 
           {/* Buttons */}
-          <div className="flex flex-wrap gap-4 pt-6">
+          <div className="flex flex-wrap gap-4 pt-2 lg:pt-6">
+
             <button
               className="border border-gray-300 dark:border-gray-500
                          text-gray-700 dark:text-gray-200
@@ -85,9 +86,10 @@ export default function Hero() {
 
           {/* Social Links */}
           <div
-            className="flex gap-6 pt-6 text-lg
-                       text-gray-600 dark:text-gray-400"
-          >
+  className="flex gap-6 pt-2 lg:pt-6 text-lg
+             text-gray-600 dark:text-gray-400"
+>
+
             <a
               href="https://github.com/AKSHAY-MORE10"
               target="_blank"
