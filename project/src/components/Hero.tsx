@@ -10,7 +10,7 @@ export default function Hero() {
     w-full
     flex items-center
     px-6 sm:px-10 lg:px-20
-    pt-6 sm:pt-0
+    pt-4 sm:pt-0
   "
 >
 
