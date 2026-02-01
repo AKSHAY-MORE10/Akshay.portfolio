@@ -108,7 +108,7 @@ export default function Hero() {
             </a>
 
             <a
-              href="https://www.instagram.com/tf.akshhh"
+              href="https://www.instagram.com/ft.akshhhy"
               target="_blank"
               rel="noreferrer"
               className="hover:text-pink-500 transition"
