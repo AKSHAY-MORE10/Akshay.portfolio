@@ -57,7 +57,7 @@ export default function Hero() {
           </p>
 
           {/* Buttons */}
-          <div className="flex flex-wrap gap-4 pt-2">
+          <div className="flex flex-wrap gap-4 pt-4">
             <button
               className="border border-gray-300 dark:border-gray-500
                          text-gray-700 dark:text-gray-200
