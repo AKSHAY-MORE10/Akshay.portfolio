@@ -28,7 +28,7 @@ function App() {
         <SplashCursor />
         <div className="relative z-10">
           <NavBar items={navItems} className='h-fit'/>
-          <main className="pt-16 lg:pt-20">
+          <main className="pt-10 lg:pt-20">
 
             <Hero/>
             <AboutSection />
