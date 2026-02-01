@@ -43,8 +43,8 @@ export default function Hero() {
 
           {/* Sub Text */}
           <p
-            className="text-sm sm:text-base md:text-lg max-w-xl lg:pt-4
-                       text-gray-600 dark:text-gray-400"
+            className="text-sm sm:text-base md:text-lg max-w-xl lg:pt-4 
+                       text-gray-600 dark:text-gray-400" 
           >
             I help teams build, scale, and release great products that feel{" "}
             <span
