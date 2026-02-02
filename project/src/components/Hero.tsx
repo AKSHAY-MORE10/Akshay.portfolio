@@ -76,9 +76,8 @@ export default function Hero() {
               className="bg-gray-200/80 dark:bg-gray-200
                          text-gray-900
                          px-6 py-2 rounded-full text-sm
-                         hover:bg-gray-300/80 transition
-                         inline-block
-                         hover:bg-gray-300/80 dark:hover:bg-gray-300/80 transition"
+                         hover:bg-gray-300/80 dark:hover:bg-gray-300/80 transition
+                         inline-block"
             >
               Get in touch
             </a>

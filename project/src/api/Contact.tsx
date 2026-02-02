@@ -19,13 +19,6 @@ const fadeIn = {
   },
 };
 
-// Get Discord webhook URL from environment variables
-const DISCORD_WEBHOOK_URL = import.meta.env.VITE_DISCORD_WEBHOOK_URL;
-
-if (!DISCORD_WEBHOOK_URL) {
-  console.warn("⚠️ VITE_DISCORD_WEBHOOK_URL is not set in environment variables");
-}
-
 export const ContactSimpleForm = () => {
   const [selectedCountryPhone, setSelectedCountryPhone] = useState("US");
   const [loading, setLoading] = useState(false);
@@ -84,49 +77,55 @@ export const ContactSimpleForm = () => {
         throw new Error("Please enter a valid email address");
       }
 
-      if (!DISCORD_WEBHOOK_URL) {
-        throw new Error("Discord webhook is not configured. Please contact the admin.");
-      }
-
-      // Send to Discord via webhook
-      const payload = {
-        username: "Website Contact Form",
-        avatar_url: "https://i.imgur.com/AfFp7pu.png",
-        embeds: [
-          {
-            title: "📩 New Contact Form Submission",
-            color: 0x5865f2,
-            fields: [
-              { name: "👤 Name", value: `${formData.firstName} ${formData.lastName}`, inline: true },
-              { name: "📧 Email", value: formData.email, inline: true },
-              { name: "📞 Phone", value: formData.phone || "Not provided", inline: true },
-              { name: "🌍 Country Code", value: selectedCountryPhone, inline: true },
-              { name: "💬 Message", value: formData.message || "—" },
-            ],
-            footer: {
-              text: "Website Contact Form Submission",
-            },
-            timestamp: new Date().toISOString(),
-          },
-        ],
-      };
-
-      // Attempt direct webhook call (may fail due to CORS in browser)
-      // For production, use a backend endpoint
-      const res = await fetch(DISCORD_WEBHOOK_URL, {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(formData),
       });
 
       if (!res.ok) {
-        // If CORS fails, provide helpful error message
-        if (res.status === 0 || res.type === "opaque") {
-          throw new Error(
-            "The message could not be sent due to browser restrictions. A backend API endpoint would be needed for this to work properly."
-          );
+        if (res.status === 404 && import.meta.env.DEV) {
+          const devWebhook = import.meta.env.VITE_DISCORD_WEBHOOK_URL as string | undefined;
+          if (!devWebhook) {
+            throw new Error("Discord webhook is not configured. Please contact the admin.");
+          }
+
+          const payload = {
+            username: "Website Contact Form",
+            avatar_url: "https://i.imgur.com/AfFp7pu.png",
+            embeds: [
+              {
+                title: "📩 New Contact Form Submission",
+                color: 0x5865f2,
+                fields: [
+                  { name: "👤 Name", value: `${formData.firstName} ${formData.lastName}`, inline: true },
+                  { name: "📧 Email", value: formData.email, inline: true },
+                  { name: "📞 Phone", value: formData.phone || "Not provided", inline: true },
+                  { name: "🌍 Country Code", value: selectedCountryPhone, inline: true },
+                  { name: "💬 Message", value: formData.message || "—" },
+                ],
+                footer: {
+                  text: "Website Contact Form Submission",
+                },
+                timestamp: new Date().toISOString(),
+              },
+            ],
+          };
+
+          const devRes = await fetch(devWebhook, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+
+          if (!devRes.ok) {
+            throw new Error("Discord webhook failed in dev mode");
+          }
+        } else {
+          const errorBody = await res.json().catch(() => null);
+          const message = errorBody?.error || "Failed to send message. Please try again later.";
+          throw new Error(message);
         }
-        throw new Error(`Discord webhook failed with status ${res.status}`);
       }
 
       setSuccess(true);
