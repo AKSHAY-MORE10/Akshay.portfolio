@@ -1,7 +1,7 @@
 import { Home, User, Briefcase, FileText } from 'lucide-react';
 import { NavBar } from './components/ui/tubelight-navbar';
 import { ThemeProvider } from './context/ThemeContext';
-import { SplashCursor } from './components/ui/splash-cursor';
+// import { SplashCursor } from './components/ui/splash-cursor';
 import { AboutSection } from './components/ui/about';
 import Hero from './components/Hero';
 import { Footer } from './components/ui/footer-section';
@@ -25,7 +25,7 @@ function App() {
   return (
     <ThemeProvider>
       <div className="min-h-screen bg-[#fff8dc] dark:bg-background/90 text-foreground relative overflow-hidden">
-        <SplashCursor />
+        {/* <SplashCursor /> */}
         <div className="relative z-10">
           <NavBar items={navItems} className='h-fit'/>
           <main className="pt-8 lg:pt-20">
