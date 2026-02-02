@@ -23,7 +23,7 @@ export default function Hero() {
     font-bosch font-light tracking-tight
     leading-snug sm:leading-tight
     text-[2.35rem] sm:text-4xl md:text-5xl lg:text-7xl
-    text-gray-800 dark:text-gray-200
+    text-gray-800 dark:text-gray-200 opacity-90
   "
 >
   <span className="font-semibold block">
