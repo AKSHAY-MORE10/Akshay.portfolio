@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Home, User, Briefcase, FileText } from "lucide-react";
 import { NavBar } from "./components/ui/tubelight-navbar";
 import { ThemeProvider } from "./context/ThemeContext";
@@ -7,12 +8,84 @@ import Hero from "./components/Hero";
 import { Footer } from "./components/ui/footer-section";
 import { TimelineSection } from "./components/TimelineSection";
 import { ServicesSection } from "./components/ServicesSection";
-import { TestimonialsBlock } from "./components/TestimonialsBlock";
 import Projects from "./components/Projects";
-import { BlogSection } from "./components/BlogSection";
 import { ContactSimpleForm } from "./api/Contact";
+import { ServicesOverviewPage } from "./pages/services/ServicesOverviewPage";
+import { WebDevelopmentPage } from "./pages/services/WebDevelopmentPage";
+import { AutomationSystemsPage } from "./pages/services/AutomationSystemsPage";
+import { AiMachineLearningPage } from "./pages/services/AiMachineLearningPage";
+import { AiIntegrationsPage } from "./pages/services/AiIntegrationsPage";
+
+function normalizePath(pathname: string) {
+  return pathname.replace(/\/+$/, "") || "/";
+}
 
 function App() {
+  const [pathname, setPathname] = useState(() => normalizePath(window.location.pathname));
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setPathname(normalizePath(window.location.pathname));
+      window.scrollTo({ top: 0, behavior: "auto" });
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []);
+
+  const navigate = (path: string) => {
+    const nextPath = normalizePath(path.split("?")[0]);
+
+    if (nextPath !== pathname) {
+      window.history.pushState({}, "", nextPath);
+      setPathname(nextPath);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  if (pathname === "/services") {
+    return (
+      <ThemeProvider>
+        <ServicesOverviewPage onNavigate={navigate} />
+      </ThemeProvider>
+    );
+  }
+
+  if (pathname === "/services/web-development") {
+    return (
+      <ThemeProvider>
+        <WebDevelopmentPage onNavigate={navigate} />
+      </ThemeProvider>
+    );
+  }
+
+  if (pathname === "/services/automation-systems") {
+    return (
+      <ThemeProvider>
+        <AutomationSystemsPage onNavigate={navigate} />
+      </ThemeProvider>
+    );
+  }
+
+  if (pathname === "/services/ai-machine-learning") {
+    return (
+      <ThemeProvider>
+        <AiMachineLearningPage onNavigate={navigate} />
+      </ThemeProvider>
+    );
+  }
+
+  if (pathname === "/services/ai-integrations") {
+    return (
+      <ThemeProvider>
+        <AiIntegrationsPage onNavigate={navigate} />
+      </ThemeProvider>
+    );
+  }
+
   const navItems = [
     { name: "Home", url: "#home", icon: Home },
     { name: "About", url: "#about", icon: User },
@@ -33,7 +106,7 @@ function App() {
               <TimelineSection />
             </div>
             {/* <Design /> */}
-            <ServicesSection />
+            <ServicesSection onNavigate={navigate} />
             {/* <MessagingLikeQnaPreview /> */}
             <Projects />
             {/* <BlogSection /> */}

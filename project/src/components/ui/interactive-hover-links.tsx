@@ -11,14 +11,15 @@ interface LinkItem {
 
 interface InteractiveHoverLinksProps {
   links?: LinkItem[]
+  onLinkClick?: (href: string) => void
 }
 
-export function InteractiveHoverLinks({ links = INTERACTIVE_LINKS }: InteractiveHoverLinksProps) {
+export function InteractiveHoverLinks({ links = INTERACTIVE_LINKS, onLinkClick }: InteractiveHoverLinksProps) {
   return (
     <section className="w-full bg-background/0 p-4 md:px-8 md:py-16">
       <div className="mx-auto max-w-7xl">
         {links.map((link) => (
-          <Link key={link.heading} {...link} />
+          <Link key={link.heading} {...link} onLinkClick={onLinkClick} />
         ))}
       </div>
     </section>
@@ -30,9 +31,10 @@ interface LinkProps {
   imgSrc: string
   subheading: string
   href: string
+  onLinkClick?: (href: string) => void
 }
 
-function Link({ heading, imgSrc, subheading, href }: LinkProps) {
+function Link({ heading, imgSrc, subheading, href, onLinkClick }: LinkProps) {
   const ref = useRef<HTMLAnchorElement | null>(null)
 
   const x = useMotionValue(0)
@@ -65,6 +67,14 @@ function Link({ heading, imgSrc, subheading, href }: LinkProps) {
     <motion.a
       href={href}
       ref={ref}
+      onClick={(event) => {
+        if (!onLinkClick || href.startsWith("#")) {
+          return
+        }
+
+        event.preventDefault()
+        onLinkClick(href)
+      }}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => {
         x.set(0)

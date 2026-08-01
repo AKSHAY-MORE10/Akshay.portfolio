@@ -1,6 +1,10 @@
 import { InteractiveHoverLinks } from "@/components/ui/interactive-hover-links"
 
-export function ServicesSection() {
+interface ServicesSectionProps {
+  onNavigate?: (path: string) => void
+}
+
+export function ServicesSection({ onNavigate }: ServicesSectionProps) {
   const serviceLinks = [
     {
       title: "Web Development",
@@ -8,7 +12,7 @@ export function ServicesSection() {
         "Fast, responsive, and scalable websites built with modern frameworks and clean architecture.",
       image:
         "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&q=80",
-      href: "#projects",
+      href: "/services/web-development",
     },
     {
       title: "Automation Systems",
@@ -16,7 +20,7 @@ export function ServicesSection() {
         "Automation workflows that reduce manual effort and help businesses move faster.",
       image:
         "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80",
-      href: "#contact",
+      href: "/services/automation-systems",
     },
     {
       title: "AI & Machine Learning",
@@ -24,7 +28,7 @@ export function ServicesSection() {
         "Applied AI & ML solutions — from intelligent features to data-driven systems that solve real problems.",
       image:
         "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80",
-      href: "#projects",
+      href: "/services/ai-machine-learning",
     },
     {
       title: "AI Integrations",
@@ -32,24 +36,24 @@ export function ServicesSection() {
         "Integrating AI into products and workflows using APIs, models, and automation pipelines.",
       image:
         "https://images.unsplash.com/photo-1518773553398-650c184e0bb3?w=1200&q=80",
-      href: "#contact",
+      href: "/services/ai-integrations",
     },
-    {
-      title: "Systems & Scalability",
-      description:
-        "Designing systems that scale reliably, with long-term performance and maintainability in mind.",
-      image:
-        "https://images.unsplash.com/photo-1551281044-8b1d0f7f6d7a?w=1200&q=80",
-      href: "#projects",
-    },
-    {
-      title: "Content Creation",
-      description:
-        "Creating content around development, automation, AI, and building in public.",
-      image:
-        "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&q=80",
-      href: "#blog",
-    },
+    // {
+    //   title: "Systems & Scalability",
+    //   description:
+    //     "Designing systems that scale reliably, with long-term performance and maintainability in mind.",
+    //   image:
+    //     "https://images.unsplash.com/photo-1551281044-8b1d0f7f6d7a?w=1200&q=80",
+    //   href: "#projects",
+    // },
+    // {
+    //   title: "Content Creation",
+    //   description:
+    //     "Creating content around development, automation, AI, and building in public.",
+    //   image:
+    //     "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&q=80",
+    //   href: "#blog",
+    // },
   ]
 
   return (
@@ -82,6 +86,7 @@ export function ServicesSection() {
             imgSrc: service.image,
             href: service.href,
           }))}
+          onLinkClick={onNavigate}
         />
       </div>
     </section>
