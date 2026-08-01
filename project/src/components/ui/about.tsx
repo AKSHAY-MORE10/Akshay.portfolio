@@ -1,6 +1,6 @@
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion"
 import { useRef, useState, useEffect } from "react"
-import profileImage from "../../FONT/sixth.png"
+import profileImage from "../../FONT/sixth.jpeg"
 
 // ─── Animations ───
 const fadeUp = {
