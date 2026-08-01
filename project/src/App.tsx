@@ -106,7 +106,7 @@ function App() {
               <TimelineSection />
             </div>
             {/* <Design /> */}
-            <ServicesSection onNavigate={navigate} />
+            {/* <ServicesSection onNavigate={navigate} /> */}
             {/* <MessagingLikeQnaPreview /> */}
             <Projects />
             {/* <BlogSection /> */}
