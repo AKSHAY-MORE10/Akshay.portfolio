@@ -59,7 +59,8 @@ export default function Hero() {
 
           {/* Buttons */}
           <div className="flex flex-wrap gap-4 pt-2">
-            <button
+            <a
+              href="#blog"
               className="border border-gray-300 dark:border-gray-500
                          text-gray-700 dark:text-gray-200
                          px-5 py-2 rounded-full text-sm
@@ -67,7 +68,7 @@ export default function Hero() {
                          transition"
             >
               Blog
-            </button>
+            </a>
 
             <a
               href="https://cal.com/akshay-more-hzl9du/business-growth-with-ai-1-1-discovery-call?user=akshay-more-hzl9du&duration=15&overlayCalendar=true"

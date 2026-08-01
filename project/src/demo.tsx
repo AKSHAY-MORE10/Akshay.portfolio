@@ -1,5 +1,5 @@
-import { DesignAgency } from "@/components/ui/landing-page"
+import { InteractiveHoverLinks } from "@/components/ui/interactive-hover-links"
 
-export function Design() {
-  return <DesignAgency />
-} 
+export default function DemoOne() {
+  return <InteractiveHoverLinks />
+}
