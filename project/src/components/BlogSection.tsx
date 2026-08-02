@@ -10,7 +10,7 @@ export function BlogSection({ onNavigate }: BlogSectionProps) {
   const latestPosts = getBlogPosts().slice(0, 4)
 
   return (
-    <section id="blog" className="w-full px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <section id="blog" className="w-full px-4 py-16 sm:px-6 lg:px-8 lg:py-24 ">
       <div className="mx-auto max-w-5xl">
         <div className="mb-8 flex items-end justify-between gap-6">
           <div className="space-y-3">

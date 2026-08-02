@@ -19,7 +19,7 @@ function BlogRow({ post, onNavigate }: { post: BlogPost; onNavigate: (path: stri
     <button
       type="button"
       onClick={() => onNavigate(`/blog/${post.slug}`)}
-      className="group flex w-full cursor-pointer flex-col gap-3 border-b border-border/60 py-5 text-left transition-transform duration-300 hover:-translate-y-0.5 sm:flex-row sm:items-center sm:justify-between sm:gap-8"
+      className="group flex w-full  cursor-pointer flex-col gap-3 border-b border-border/60 py-5 text-left transition-transform duration-300 hover:-translate-y-0.5 sm:flex-row sm:items-center sm:justify-between sm:gap-8"
     >
       <div className="space-y-1">
         <p className="text-sm text-muted-foreground sm:text-base">{formatBlogDate(post.publishedDate)}</p>

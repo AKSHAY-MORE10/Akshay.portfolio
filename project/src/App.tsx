@@ -115,7 +115,7 @@ function App() {
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-[#fff8dc] dark:bg-background/90 text-foreground relative overflow-hidden">
+      <div className="relative min-h-screen overflow-hidden bg-background text-foreground">
         <SplashCursor />
         <div className="relative z-10">
           <NavBar items={navItems} className="h-fit" />
