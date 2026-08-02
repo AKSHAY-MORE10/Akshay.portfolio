@@ -7,14 +7,16 @@ import { AboutSection } from "./components/ui/about";
 import Hero from "./components/Hero";
 import { Footer } from "./components/ui/footer-section";
 import { TimelineSection } from "./components/TimelineSection";
-import { ServicesSection } from "./components/ServicesSection";
 import Projects from "./components/Projects";
+import { BlogSection } from "./components/BlogSection";
 import { ContactSimpleForm } from "./api/Contact";
 import { ServicesOverviewPage } from "./pages/services/ServicesOverviewPage";
 import { WebDevelopmentPage } from "./pages/services/WebDevelopmentPage";
 import { AutomationSystemsPage } from "./pages/services/AutomationSystemsPage";
 import { AiMachineLearningPage } from "./pages/services/AiMachineLearningPage";
 import { AiIntegrationsPage } from "./pages/services/AiIntegrationsPage";
+import { BlogIndexPage } from "./pages/blog/BlogIndexPage";
+import { BlogPostPage } from "./pages/blog/BlogPostPage";
 
 function normalizePath(pathname: string) {
   return pathname.replace(/\/+$/, "") || "/";
@@ -45,6 +47,24 @@ function App() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
+
+  const blogSlugMatch = pathname.match(/^\/blog\/([^/]+)$/);
+
+  if (pathname === "/blog") {
+    return (
+      <ThemeProvider>
+        <BlogIndexPage onNavigate={navigate} />
+      </ThemeProvider>
+    );
+  }
+
+  if (blogSlugMatch) {
+    return (
+      <ThemeProvider>
+        <BlogPostPage slug={decodeURIComponent(blogSlugMatch[1])} onNavigate={navigate} />
+      </ThemeProvider>
+    );
+  }
 
   if (pathname === "/services") {
     return (
@@ -105,11 +125,8 @@ function App() {
             <div className="w-full px-4">
               <TimelineSection />
             </div>
-            {/* <Design /> */}
-            {/* <ServicesSection onNavigate={navigate} /> */}
-            {/* <ServicesSection onNavigate={navigate} /> */}
             <Projects />
-            {/* <TestimonialsBlock /> */}
+            <BlogSection onNavigate={navigate} />
             <ContactSimpleForm />
           </main>
           <Footer />

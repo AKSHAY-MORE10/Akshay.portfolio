@@ -1,0 +1,218 @@
+[
+  {
+    "title": "Building AI Agents with LangGraph",
+    "slug": "building-ai-agents-with-langgraph",
+    "description": "How I structured agent state, tools, and routing to keep an assistant reliable enough for real workflows.",
+    "publishedDate": "2026-06-08",
+    "readingTime": "7 min read",
+    "category": "AI",
+    "tags": [
+      "langgraph",
+      "agents",
+      "llms",
+      "workflow"
+    ],
+    "author": "Akshay More",
+    "featured": true,
+    "coverImage": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80",
+    "content": "# Building AI Agents with LangGraph\n\nA production agent should be predictable before it is impressive. I used LangGraph to make state, tools, and routing explicit so the system stays debuggable.\n\n## Why I reached for LangGraph\n\n- State is visible.\n- Tool calls are intentional.\n- Branches are easy to reason about.\n\n> If you cannot explain the control flow in one minute, it is too magical for production.\n\n## A small example\n\n```ts\nimport { StateGraph } from '@langchain/langgraph'\n\nconst graph = new StateGraph()\n  .addNode('planner', plannerNode)\n  .addNode('tool', toolNode)\n  .addEdge('planner', 'tool')\n```\n\n## What actually mattered\n\nI leaned on tight prompts, short context windows, and clear fallbacks. The model can be creative; the product should remain boringly reliable.\n\n![LangGraph sketch](https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1600&q=80)\n\n## Final takeaway\n\nBuild the graph for the failure case first, then add intelligence on top."
+  },
+  {
+    "title": "How I Built My AI Portfolio",
+    "slug": "how-i-built-my-ai-portfolio",
+    "description": "The design decisions, content structure, and motion system behind a portfolio that feels calm instead of loud.",
+    "publishedDate": "2026-05-25",
+    "readingTime": "5 min read",
+    "category": "Web Development",
+    "tags": [
+      "portfolio",
+      "react",
+      "tailwind",
+      "framer-motion"
+    ],
+    "author": "Akshay More",
+    "featured": false,
+    "coverImage": "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=1600&q=80",
+    "content": "# How I Built My AI Portfolio\n\nThis portfolio was designed to feel quiet, premium, and intentional. The goal was not to impress with noise. The goal was to make the work easy to scan.\n\n## Design rules\n\n- Keep typography in charge.\n- Let whitespace do the heavy lifting.\n- Use motion only where it clarifies state.\n\n## Structure\n\nThe homepage leads with a simple story, then moves into recent work, writing, and contact. That order keeps the page readable on mobile and desktop.\n\n> Clean design is usually the result of fewer decisions, not more decoration.\n\n## Result\n\nThe final build feels closer to a developer journal than a flashy landing page, which is exactly what I wanted."
+  },
+  {
+    "title": "Scaling AI Automation for Businesses",
+    "slug": "scaling-ai-automation-for-businesses",
+    "description": "A practical look at batching, retries, and human-in-the-loop checks for automation that people can trust.",
+    "publishedDate": "2026-04-05",
+    "readingTime": "6 min read",
+    "category": "Automation",
+    "tags": [
+      "automation",
+      "n8n",
+      "workflows",
+      "ops"
+    ],
+    "author": "Akshay More",
+    "featured": false,
+    "coverImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80",
+    "content": "# Scaling AI Automation for Businesses\n\nAutomation is useful only when it can fail gracefully. Once a workflow touches customers, reliability matters more than novelty.\n\n## What helped\n\n1. Queue work instead of firing everything at once.\n2. Add explicit retries for transient errors.\n3. Surface a manual review step for edge cases.\n\n## A simple pattern\n\n```ts\nconst result = await runWorkflow(input)\nif (!result.ok) {\n  await notifyHuman(result.reason)\n}\n```\n\n## The real win\n\nThe strongest systems were the ones people could understand at a glance. Clarity beats cleverness when you are operating in production."
+  },
+  {
+    "title": "Shipping a Minimal Blog System with React",
+    "slug": "shipping-a-minimal-blog-system-with-react",
+    "description": "How I wired routes, markdown rendering, search, and motion into a clean writing experience.",
+    "publishedDate": "2026-03-16",
+    "readingTime": "8 min read",
+    "category": "Tutorials",
+    "tags": [
+      "react",
+      "markdown",
+      "seo",
+      "blog"
+    ],
+    "author": "Akshay More",
+    "featured": false,
+    "coverImage": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1600&q=80",
+    "content": "# Shipping a Minimal Blog System with React\n\nThe blog system needs to feel like the rest of the portfolio: light, fast, and easy to read. I chose a custom route layer so the site stays dependency-light.\n\n## Rendering content\n\nMarkdown works well here because it keeps the writing portable. It also lets me support code blocks, links, images, and headings without building a CMS.\n\n![Editor and preview](https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1600&q=80)\n\n## Details that matter\n\n- Search should update instantly.\n- Filters should be obvious.\n- Article pages should feel like reading, not shopping.\n\n## Small takeaway\n\nIf the layout feels invisible, the content gets to lead. That is the point."
+  },
+  {
+    "title": "Designing Fast Portfolio Navigation in Vite",
+    "slug": "designing-fast-portfolio-navigation-in-vite",
+    "description": "A custom pathname switcher, smooth transitions, and why I kept routing intentionally simple.",
+    "publishedDate": "2026-03-05",
+    "readingTime": "4 min read",
+    "category": "Projects",
+    "tags": [
+      "vite",
+      "navigation",
+      "spa",
+      "performance"
+    ],
+    "author": "Akshay More",
+    "featured": false,
+    "coverImage": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80",
+    "content": "# Designing Fast Portfolio Navigation in Vite\n\nA lightweight router was enough for this portfolio because the surface area is small. I only needed section anchors, service pages, and blog routes.\n\n## Why not a heavier router\n\nBecause fewer moving pieces made the code easier to hold in my head.\n\n## Result\n\nThe app feels immediate, and the page transitions stay soft instead of flashy."
+  },
+  {
+    "title": "What I Learned Shipping in Public",
+    "slug": "what-i-learned-shipping-in-public",
+    "description": "Writing about the process makes the work easier to revisit, improve, and explain later.",
+    "publishedDate": "2026-02-01",
+    "readingTime": "3 min read",
+    "category": "Career",
+    "tags": [
+      "career",
+      "writing",
+      "learning",
+      "public-building"
+    ],
+    "author": "Akshay More",
+    "featured": false,
+    "coverImage": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80",
+    "content": "# What I Learned Shipping in Public\n\nPublishing while building keeps me honest. It creates a record of what changed, what failed, and what got better.\n\n## The habit\n\nI try to write down the decision, not just the outcome. That makes the next iteration easier to justify and easier to review.\n\n> Progress is easier to trust when you can point to the evidence.\n\n## Closing note\n\nWriting is part of the product now."
+  },
+  {
+    "title": "Fine-Tuning Qwen2.5-7B on an 8GB GPU",
+    "slug": "fine-tuning-qwen-7b-on-consumer-hardware",
+    "description": "Why a GGUF model can't be fine-tuned directly, and how QLoRA through Unsloth made a single 8GB card enough.",
+    "publishedDate": "2025-10-20",
+    "readingTime": "6 min read",
+    "category": "AI",
+    "tags": [
+      "fine-tuning",
+      "qlora",
+      "llm",
+      "unsloth"
+    ],
+    "author": "Akshay More",
+    "featured": false,
+    "coverImage": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1600&q=80",
+    "content": "# Fine-Tuning Qwen2.5-7B on an 8GB GPU\n\nI needed to fine-tune Qwen2.5-7B on a small astrology dataset and deploy it with vLLM. The first mistake was assuming I could fine-tune the GGUF model I already had pulled through Ollama.\n\n## Why GGUF didn't work\n\nGGUF is a quantized, inference-only format. There is no gradient path back through it. Training needs the original Hugging Face safetensors weights, not the compressed artifact Ollama serves.\n\n## The actual pipeline\n\n- Pull the base model in HF safetensors format.\n- Apply QLoRA using Unsloth, which keeps the base weights in 4-bit and only trains small adapter layers.\n- Merge or keep adapters separate depending on the deployment target.\n\n> An 8GB card cannot hold a 7B model's full gradients. It can absolutely hold its LoRA adapters.\n\n## Deployment\n\n```bash\npip install vllm\nvllm serve ./merged-model --max-model-len 4096\n```\n\n## Takeaway\n\nQuantized inference formats and trainable formats are not the same thing, even when they come from the same base model. Check which one you actually have before writing the training loop."
+  },
+  {
+    "title": "Deploying IntervuAI: Vercel, Railway, and the Small Config Fights",
+    "slug": "deploying-intervuai-vercel-railway",
+    "description": "What broke when shipping a LangGraph interview simulator to production, and the two config fixes that mattered.",
+    "publishedDate": "2025-12-03",
+    "readingTime": "5 min read",
+    "category": "Projects",
+    "tags": [
+      "deployment",
+      "vercel",
+      "railway",
+      "langgraph"
+    ],
+    "author": "Akshay More",
+    "featured": false,
+    "coverImage": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80",
+    "content": "# Deploying IntervuAI: Vercel, Railway, and the Small Config Fights\n\nIntervuAI is an adaptive interview simulator built on LangGraph, FastAPI, and Groq. The code worked locally. Deployment is where the real debugging started.\n\n## Vercel misread the project\n\nVercel auto-detected the repo as a FastAPI serverless function because the backend lived at the root alongside the frontend. The fix was simple once found: set the Root Directory to `frontend` in the project settings so Vercel only builds the React app.\n\n## Railway wanted lowercase\n\nThe backend config file needs to be named `railway.toml`, not `Railway.toml`. Case-sensitive filesystems on the build server silently ignored the capitalized version, and Railway fell back to defaults that didn't match the app.\n\n## What shipped\n\n- Frontend on Vercel, root directory scoped correctly.\n- Backend on Railway, config picked up after the rename.\n- LangGraph + Groq handling adaptive question difficulty during the interview.\n\n## Takeaway\n\nMost of deployment debugging isn't your code. It's platform assumptions about your repo's shape."
+  },
+  {
+    "title": "Building a Job Application Tracker with n8n, Ollama, and Notion",
+    "slug": "job-application-tracker-n8n-ollama-notion",
+    "description": "Self-hosting an automation that reads Gmail, classifies applications with a local LLM, and logs them to Notion.",
+    "publishedDate": "2026-01-18",
+    "readingTime": "6 min read",
+    "category": "Automation",
+    "tags": [
+      "n8n",
+      "ollama",
+      "automation",
+      "notion"
+    ],
+    "author": "Akshay More",
+    "featured": false,
+    "coverImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80",
+    "content": "# Building a Job Application Tracker with n8n, Ollama, and Notion\n\nI was applying to enough roles that manually tracking status in a spreadsheet stopped working. So I built a self-hosted n8n workflow: Gmail in, a local LLM to classify, Notion out.\n\n## The stack\n\n- n8n running in Docker, self-hosted on port 5680.\n- Gmail OAuth2 to pull application-related emails.\n- Ollama running qwen2.5:7b locally for classification.\n- Notion as the tracker database.\n\n## Where it broke\n\nThe Basic LLM Chain node in n8n wraps calls through LangChain internally, and that wrapper silently overrode the custom JSON prompt I was sending. The model kept returning conversational text instead of structured output.\n\n> If a node abstracts away the request, it can also abstract away the part of the request you actually needed.\n\n## The fix\n\nI dropped the Basic LLM Chain node entirely and used a plain HTTP Request node pointed directly at Ollama's API. That gave me full control over the prompt and the response format.\n\n```json\n{\n  \"model\": \"qwen2.5:7b\",\n  \"prompt\": \"Classify this email as: applied, interview, rejected, offer. Return JSON only.\",\n  \"stream\": false\n}\n```\n\n## Status\n\nGmail ingestion and classification are working end-to-end. Notion write-back is the piece I'm finishing next."
+  },
+  {
+    "title": "Learning RAG the Slow Way: Embeddings, Chunking, and ANN Search Locally",
+    "slug": "learning-rag-locally-embeddings-chunking-ann",
+    "description": "Working through a fully offline RAG curriculum with nomic-embed-text, ChromaDB, and FAISS, no paid API keys involved.",
+    "publishedDate": "2026-01-05",
+    "readingTime": "7 min read",
+    "category": "Tutorials",
+    "tags": [
+      "rag",
+      "embeddings",
+      "chromadb",
+      "faiss"
+    ],
+    "author": "Akshay More",
+    "featured": false,
+    "coverImage": "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=1600&q=80",
+    "content": "# Learning RAG the Slow Way: Embeddings, Chunking, and ANN Search Locally\n\nMost RAG tutorials start with a hosted embedding API and a vector database SaaS. I wanted to understand the pieces without any billing dashboards involved, so I built the whole curriculum locally.\n\n## The pipeline\n\n1. Generate embeddings with `nomic-embed-text` served through Ollama.\n2. Chunk source documents with a few different strategies and compare retrieval quality.\n3. Store vectors in ChromaDB with persistent storage and HNSW indexing.\n4. Benchmark FAISS IVF against ChromaDB's HNSW for larger corpora.\n\n## Why chunking strategy matters more than people expect\n\nCosine similarity on a badly chunked document retrieves the wrong context confidently. Getting chunk boundaries close to semantic units mattered more than tuning the embedding model.\n\n## Code structure\n\nI kept the project as a progressive import chain: `chunker.py` feeds `chroma_store.py`, which feeds `ann_search.py`. Each file is testable on its own before wiring into the next.\n\n```python\nfrom chunker import chunk_document\nfrom chroma_store import upsert_chunks\n\nchunks = chunk_document(text, strategy=\"semantic\")\nupsert_chunks(chunks, collection=\"docs\")\n```\n\n## Takeaway\n\nRunning the full stack locally forced me to actually understand what each layer was doing, instead of trusting a managed service to get it right."
+  },
+  {
+    "title": "Writing a Binance Futures Trading Bot Without a Wrapper Library",
+    "slug": "binance-futures-trading-bot-without-wrapper",
+    "description": "Building a CLI trading bot on raw REST calls and HMAC-SHA256 signing, and the demo API key issue that ate an afternoon.",
+    "publishedDate": "2025-09-28",
+    "readingTime": "6 min read",
+    "category": "Projects",
+    "tags": [
+      "python",
+      "trading",
+      "binance",
+      "api"
+    ],
+    "author": "Akshay More",
+    "featured": false,
+    "coverImage": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1600&q=80",
+    "content": "# Writing a Binance Futures Trading Bot Without a Wrapper Library\n\nFor a Binance Futures Testnet assignment, the requirement was direct REST calls with manual HMAC-SHA256 signing, no `python-binance` or similar wrapper. That constraint turned out to be the interesting part.\n\n## What the bot supports\n\n- MARKET, LIMIT, and STOP order types.\n- A mock demo mode for testing logic without hitting the API.\n- Unit tests covering signature generation and order payload construction.\n\n## The signature\n\n```python\nimport hmac, hashlib\n\ndef sign(query_string: str, secret: str) -> str:\n    return hmac.new(secret.encode(), query_string.encode(), hashlib.sha256).hexdigest()\n```\n\n## The error that ate an afternoon\n\nEvery request returned a `-2015` invalid API key error, even with keys copied correctly from the Binance Futures Testnet dashboard. The actual cause: the demo trading environment needs keys generated specifically from `demo.binance.com`, not the regular testnet key generator. Two systems that look identical, issuing incompatible keys.\n\n## Takeaway\n\nWhen an error message says invalid credentials but the credentials look right, check whether you're even pointed at the right environment before touching the code."
+  },
+  {
+    "title": "Taking SnapClass from Streamlit Prototype to a Dockerized API",
+    "slug": "snapclass-streamlit-to-production-api",
+    "description": "Splitting a Streamlit prototype into a FastAPI service, containerizing both, and wiring up CI/CD.",
+    "publishedDate": "2025-09-10",
+    "readingTime": "7 min read",
+    "category": "Web Development",
+    "tags": [
+      "fastapi",
+      "docker",
+      "streamlit",
+      "ci-cd"
+    ],
+    "author": "Akshay More",
+    "featured": false,
+    "coverImage": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1600&q=80",
+    "content": "# Taking SnapClass from Streamlit Prototype to a Dockerized API\n\nSnapClass started as a Streamlit prototype, which is great for demoing an idea and bad for anything that needs a stable API surface. Productionizing it meant splitting the logic out from the UI.\n\n## The split\n\n- A FastAPI service exposing the core functionality as a REST API, running on port 8000.\n- Streamlit kept as a thin UI layer on port 8501, calling the API instead of holding logic itself.\n- Both containerized separately with Docker so they scale and deploy independently.\n\n## What broke along the way\n\n- A `ModuleNotFoundError` traced back to inconsistent package paths between the Streamlit and FastAPI containers.\n- `webrtcvad` failing to build inside Docker, needing the right system-level build dependencies added to the image.\n- Streamlit version incompatibilities between what worked locally and what the container pulled.\n- Supabase UUID and integer type mismatches that only showed up once real data hit the tables.\n\n## CI/CD\n\nGitHub Actions runs the build and test steps on push, so a broken container never reaches deployment silently.\n\n## Takeaway\n\nA prototype and a product have different jobs. Separating them early made each piece easier to reason about, even though it meant more moving parts up front."
+  }
+]

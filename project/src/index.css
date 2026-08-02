@@ -102,3 +102,50 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+.blog-markdown h1,
+.blog-markdown h2,
+.blog-markdown h3,
+.blog-markdown h4 {
+  color: hsl(var(--foreground));
+}
+
+.blog-markdown pre {
+  margin: 0;
+}
+
+.blog-markdown code.hljs,
+.blog-markdown pre code {
+  background: transparent;
+}
+
+.blog-markdown .hljs {
+  background: transparent;
+  color: #e5e7eb;
+}
+
+.blog-markdown .hljs-comment,
+.blog-markdown .hljs-quote {
+  color: #94a3b8;
+}
+
+.blog-markdown .hljs-keyword,
+.blog-markdown .hljs-selector-tag,
+.blog-markdown .hljs-title,
+.blog-markdown .hljs-name {
+  color: #93c5fd;
+}
+
+.blog-markdown .hljs-string,
+.blog-markdown .hljs-attr,
+.blog-markdown .hljs-symbol,
+.blog-markdown .hljs-bullet {
+  color: #86efac;
+}
+
+.blog-markdown .hljs-number,
+.blog-markdown .hljs-literal,
+.blog-markdown .hljs-variable,
+.blog-markdown .hljs-template-variable {
+  color: #fda4af;
+}
+
