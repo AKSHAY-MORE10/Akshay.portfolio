@@ -107,9 +107,8 @@ function App() {
             </div>
             {/* <Design /> */}
             {/* <ServicesSection onNavigate={navigate} /> */}
-            {/* <MessagingLikeQnaPreview /> */}
+            {/* <ServicesSection onNavigate={navigate} /> */}
             <Projects />
-            {/* <BlogSection /> */}
             {/* <TestimonialsBlock /> */}
             <ContactSimpleForm />
           </main>
