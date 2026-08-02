@@ -2,6 +2,11 @@ import { FocusCards } from "./ui/focus-cards";
 
 const cards = [
   {
+    title: "CyberAscii Vision — AI-Powered ASCII Camera",
+    src: "/cyberascii-vision.svg",
+    link: "https://ascii-yourself-eight.vercel.app/",
+  },
+  {
     title: "SnapClass — AI Attendance System",
     src: "/snapclass.png",
     link: "https://snapclass-rose.vercel.app/",
