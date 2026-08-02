@@ -36,31 +36,39 @@ const cards = [
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="w-full py-16 md:py-20">
-      <div className="container max-w-7xl px-6 md:px-10">
-        {/* Header */}
-        <div className="mx-auto mb-14 max-w-4xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-muted/40 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-            Featured Work
-          </span>
+  <section
+  id="projects"
+  className="relative w-full py-20 md:py-28 overflow-hidden"
+>
+  <div className="container mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+    {/* Header */}
+    <div className="mx-auto mb-16 max-w-4xl text-center">
+      <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-muted/40 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground backdrop-blur-md">
+        <span className="h-2 w-2 rounded-full bg-primary" />
+        Featured Work
+      </span>
 
-          <h2 className="mt-4 font-bosch text-3xl tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
-            Projects Built at the{" "}
-            <span className="bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
-              Intersection of Product and AI
-            </span>
-          </h2>
+      <h2 className="mt-6 font-bosch text-4xl leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+        Projects Built at the
+        <br className="sm:hidden" />
 
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            A curated selection of products where I blended web engineering,
-            automation, and practical system design to solve real user problems.
-          </p>
-        </div>
+        <span className="block bg-gradient-to-r from-violet-500 via-indigo-500 to-cyan-500 bg-clip-text text-transparent">
+          Intersection of Product & AI
+        </span>
+      </h2>
 
-        {/* Focus Cards */}
-        <FocusCards cards={cards} />
-      </div>
-    </section>
+      <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg">
+        A curated collection of AI-powered applications, full-stack products,
+        and automation systems designed to solve real-world problems with a
+        focus on performance, usability, and modern engineering.
+      </p>
+    </div>
+
+    {/* Projects */}
+    <div className="w-full">
+      <FocusCards cards={cards} />
+    </div>
+  </div>
+</section>
   );
 }
