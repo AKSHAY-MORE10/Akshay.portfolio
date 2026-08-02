@@ -190,7 +190,7 @@ export function AboutSection() {
     { value: 10, suffix: "+", label: "Projects Shipped" },
     { value: 3, suffix: "+", label: "Years of Learning" },
     { value: 5, suffix: "+", label: "Happy Clients" },
-    { value: 2, suffix: "", label: "Products Live" },
+    { value: 3, suffix: "", label: "Products Live" },
   ]
 
   return (
