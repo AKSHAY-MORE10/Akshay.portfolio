@@ -17,13 +17,17 @@ import { AiMachineLearningPage } from "./pages/services/AiMachineLearningPage";
 import { AiIntegrationsPage } from "./pages/services/AiIntegrationsPage";
 import { BlogIndexPage } from "./pages/blog/BlogIndexPage";
 import { BlogPostPage } from "./pages/blog/BlogPostPage";
+import { ServicesSection } from "./components/ServicesSection";
+import { TestimonialsSection } from "./components/blocks/testimonials-with-marquee";
 
 function normalizePath(pathname: string) {
   return pathname.replace(/\/+$/, "") || "/";
 }
 
 function App() {
-  const [pathname, setPathname] = useState(() => normalizePath(window.location.pathname));
+  const [pathname, setPathname] = useState(() =>
+    normalizePath(window.location.pathname),
+  );
 
   useEffect(() => {
     const handlePopState = () => {
@@ -61,7 +65,10 @@ function App() {
   if (blogSlugMatch) {
     return (
       <ThemeProvider>
-        <BlogPostPage slug={decodeURIComponent(blogSlugMatch[1])} onNavigate={navigate} />
+        <BlogPostPage
+          slug={decodeURIComponent(blogSlugMatch[1])}
+          onNavigate={navigate}
+        />
       </ThemeProvider>
     );
   }
@@ -120,15 +127,40 @@ function App() {
         <div className="relative z-10">
           <NavBar items={navItems} className="h-fit" />
           <main className="pt-8 lg:pt-20">
+            {/* 1. First Impression */}
             <Hero />
+
+            {/* 2. Who You Are */}
             <AboutSection />
+
+            {/* 3. Skills / Tech Stack */}
+            {/* <SkillsSection /> */}
+
+            {/* 4. Experience Journey */}
             <div className="w-full px-4">
               <TimelineSection />
             </div>
+
+            {/* 5. Featured Projects */}
             <Projects />
+
+            {/* 6. What You Offer */}
+            <ServicesSection onNavigate={navigate} />
+
+            {/* 7. Testimonials (Optional but recommended) */}
+            {/* <TestimonialsSection /> */}
+
+            {/* 8. Blog / Articles */}
             <BlogSection onNavigate={navigate} />
+
+            {/* 9. Frequently Asked Questions (Optional) */}
+            {/* <FAQSection /> */}
+
+            {/* 10. Contact */}
             <ContactSimpleForm />
           </main>
+
+          <Footer />
           <Footer />
         </div>
       </div>
