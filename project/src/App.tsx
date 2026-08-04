@@ -160,7 +160,7 @@ function App() {
             <ContactSimpleForm />
           </main>
 
-          <Footer />
+          {/* <Footer /> */}
           <Footer />
         </div>
       </div>
