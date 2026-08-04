@@ -130,33 +130,24 @@ function App() {
             {/* 1. First Impression */}
             <Hero />
 
-            {/* 2. Who You Are */}
             <AboutSection />
 
-            {/* 3. Skills / Tech Stack */}
+
             {/* <SkillsSection /> */}
 
             {/* 4. Experience Journey */}
             <div className="w-full px-4">
               <TimelineSection />
             </div>
-
-            {/* 5. Featured Projects */}
             <Projects />
-
-            {/* 6. What You Offer */}
             <ServicesSection onNavigate={navigate} />
 
             {/* 7. Testimonials (Optional but recommended) */}
             {/* <TestimonialsSection /> */}
-
-            {/* 8. Blog / Articles */}
             <BlogSection onNavigate={navigate} />
 
             {/* 9. Frequently Asked Questions (Optional) */}
             {/* <FAQSection /> */}
-
-            {/* 10. Contact */}
             <ContactSimpleForm />
           </main>
 
