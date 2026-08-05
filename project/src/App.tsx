@@ -127,31 +127,17 @@ function App() {
         <div className="relative z-10">
           <NavBar items={navItems} className="h-fit" />
           <main className="pt-8 lg:pt-20">
-            {/* 1. First Impression */}
             <Hero />
-
-            <AboutSection />
-
-
-            {/* <SkillsSection /> */}
-
-            {/* 4. Experience Journey */}
             <div className="w-full px-4">
               <TimelineSection />
             </div>
             <Projects />
             <ServicesSection onNavigate={navigate} />
-
-            {/* 7. Testimonials (Optional but recommended) */}
-            {/* <TestimonialsSection /> */}
+            {/* <TestimonialsSection  /> */}
             <BlogSection onNavigate={navigate} />
-
-            {/* 9. Frequently Asked Questions (Optional) */}
             {/* <FAQSection /> */}
             <ContactSimpleForm />
           </main>
-
-          {/* <Footer /> */}
           <Footer />
         </div>
       </div>
