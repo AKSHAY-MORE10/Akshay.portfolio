@@ -35,7 +35,7 @@
     "tags": ["ai", "pricing", "career", "reality-check"],
     "author": "Akshay More",
     "featured": false,
-    "coverImage": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80",
+    "coverImage": "/first.jpeg",
     "content": "# AI Didn't Make My Work Cheaper. It Made Me Faster.\n\nAfter my last post on AI and where the leverage is shifting, a few founders pushed back with a fair question: if AI helps you build faster, shouldn't the price go down?\n\n## What AI actually removes\n\nAI doesn't replace thinking. It doesn't understand a business context on its own, and it doesn't take responsibility for whether the delivered system actually works. What it removes is repetition, the mechanical part of the work that used to eat hours.\n\n## What you're still paying for\n\nThe real value was never in the typing. It's in:\n\n- Scoping the right solution for the actual problem.\n- Designing a system that holds up under real conditions.\n- Handling the edge cases nobody mentions in the spec.\n- Making sure the outcome matches what was promised.\n\n> You don't pay a lawyer for typing speed. You don't pay a surgeon for hand movement. You pay for judgment, experience, and outcomes.\n\n## Speed and responsibility are different axes\n\nAI compresses time. It does not compress responsibility. Those are two separate variables, and pricing has always tracked the second one, not the first.\n\n## Takeaway\n\nFounders building for the long term tend to understand this distinction instinctively: faster delivery is a nice side effect of better tools, but what they're actually buying is someone willing to own the outcome."
   },
   {
