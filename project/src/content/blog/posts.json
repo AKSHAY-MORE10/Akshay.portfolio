@@ -1,17 +1,43 @@
 [
   {
+    "title": "Building a RAG Engine From Scratch: No APIs, No Cloud",
+    "slug": "building-rag-engine-from-scratch-no-apis",
+    "description": "What actually clicked once I built the embedding-to-retrieval pipeline myself, locally, on an RTX 4060.",
+    "publishedDate": "2026-08-05",
+    "readingTime": "5 min read",
+    "category": "AI",
+    "tags": ["rag", "embeddings", "ollama", "learning-in-public"],
+    "author": "Akshay More",
+    "featured": false,
+    "coverImage": "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=1600&q=80",
+    "content": "# Building a RAG Engine From Scratch: No APIs, No Cloud\n\nSpent today building a RAG engine from scratch. No APIs, no cloud, just an RTX 4060 and a lot of confusion. Understanding actually clicked once I stopped treating retrieval as a black box.\n\n## The core realization\n\nAn AI doesn't 'search' the way Google does. It converts a question into a list of numbers, an embedding, and finds chunks of text whose numbers are geometrically close.\n\n> Meaning is literally stored as geometry. Similar text becomes nearby vectors in space.\n\n## The pipeline\n\n1. Take real documents.\n2. Chunk them smartly, since embedding an entire document as one vector loses meaning.\n3. Convert each chunk into embeddings using a local model, `nomic-embed-text` via Ollama, at zero API cost.\n4. Embed the incoming query the same way.\n5. Compare using cosine similarity, essentially the angle between vectors.\n6. Return the most relevant chunks.\n\n## Running it locally\n\n```bash\nollama pull nomic-embed-text\n```\n\nNo paid APIs, no hosted vector DB, just local inference and local storage.\n\n## What felt like magic\n\nTyping a question and getting back the exact right chunk from a document the model had never seen before, in the traditional sense. That's semantic search. That's what RAG is built on.\n\n## What's next\n\nChromaDB, FAISS, hybrid search, and rerankers are still ahead, but today's foundation makes all of that make sense now.\n\n## Takeaway\n\nIf you're learning RAG, don't skip the fundamentals. Embeddings and chunking are the whole game."
+  },
+  {
+    "title": "What Overfitting Actually Taught Me About My First ML Model",
+    "slug": "what-overfitting-taught-me-first-ml-model",
+    "description": "99% training accuracy, 58% validation accuracy, and a night of tweaking parameters before understanding why.",
+    "publishedDate": "2026-08-02",
+    "readingTime": "4 min read",
+    "category": "AI",
+    "tags": [
+      "machine-learning",
+      "overfitting",
+      "fundamentals",
+      "learning-in-public"
+    ],
+    "author": "Akshay More",
+    "featured": false,
+    "coverImage": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1600&q=80",
+    "content": "# What Overfitting Actually Taught Me About My First ML Model\n\nI was building my first ML model. Training accuracy: 99%. Validation accuracy: 58%. Classic overfitting.\n\n## What overfitting actually is\n\nOverfitting is when a model memorizes the training data so well that it fails on anything new. It's the equivalent of a student who mugs up last year's question paper word for word, then freezes when the exam has one new question. Perfect on what it already knows, a disaster in the real world.\n\n## What I tried first (and why it didn't work)\n\n- Changed the learning rate.\n- Adjusted batch size.\n- Tried different optimizers.\n\nNone of it worked, because none of it addressed why the model was memorizing instead of learning.\n\n## The actual fixes\n\n1. **Dropout** — randomly switches off neurons during training so the model can't just memorize, forcing it to learn actual patterns.\n2. **Regularization (L1/L2)** — adds a penalty for complexity, discouraging the model from overfitting to noise.\n3. **More data** — obvious, but the most effective lever. A model that has seen more examples generalizes better.\n4. **Early stopping** — stop training once validation loss stops improving, instead of letting it over-study the training set.\n\n## Takeaway\n\nA model that only performs well on training data is useless. Generalization is everything, in ML and, honestly, in life."
+  },
+  {
     "title": "Building AI Agents with LangGraph",
     "slug": "building-ai-agents-with-langgraph",
     "description": "How I structured agent state, tools, and routing to keep an assistant reliable enough for real workflows.",
     "publishedDate": "2026-06-08",
     "readingTime": "7 min read",
     "category": "AI",
-    "tags": [
-      "langgraph",
-      "agents",
-      "llms",
-      "workflow"
-    ],
+    "tags": ["langgraph", "agents", "llms", "workflow"],
     "author": "Akshay More",
     "featured": true,
     "coverImage": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80",
@@ -24,12 +50,7 @@
     "publishedDate": "2026-05-25",
     "readingTime": "5 min read",
     "category": "Web Development",
-    "tags": [
-      "portfolio",
-      "react",
-      "tailwind",
-      "framer-motion"
-    ],
+    "tags": ["portfolio", "react", "tailwind", "framer-motion"],
     "author": "Akshay More",
     "featured": false,
     "coverImage": "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=1600&q=80",
@@ -42,12 +63,7 @@
     "publishedDate": "2026-04-05",
     "readingTime": "6 min read",
     "category": "Automation",
-    "tags": [
-      "automation",
-      "n8n",
-      "workflows",
-      "ops"
-    ],
+    "tags": ["automation", "n8n", "workflows", "ops"],
     "author": "Akshay More",
     "featured": false,
     "coverImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80",
@@ -60,12 +76,7 @@
     "publishedDate": "2026-03-16",
     "readingTime": "8 min read",
     "category": "Tutorials",
-    "tags": [
-      "react",
-      "markdown",
-      "seo",
-      "blog"
-    ],
+    "tags": ["react", "markdown", "seo", "blog"],
     "author": "Akshay More",
     "featured": false,
     "coverImage": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1600&q=80",
@@ -78,12 +89,7 @@
     "publishedDate": "2026-03-05",
     "readingTime": "4 min read",
     "category": "Projects",
-    "tags": [
-      "vite",
-      "navigation",
-      "spa",
-      "performance"
-    ],
+    "tags": ["vite", "navigation", "spa", "performance"],
     "author": "Akshay More",
     "featured": false,
     "coverImage": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80",
@@ -96,12 +102,7 @@
     "publishedDate": "2026-02-01",
     "readingTime": "3 min read",
     "category": "Career",
-    "tags": [
-      "career",
-      "writing",
-      "learning",
-      "public-building"
-    ],
+    "tags": ["career", "writing", "learning", "public-building"],
     "author": "Akshay More",
     "featured": false,
     "coverImage": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80",
@@ -114,12 +115,7 @@
     "publishedDate": "2025-10-20",
     "readingTime": "6 min read",
     "category": "AI",
-    "tags": [
-      "fine-tuning",
-      "qlora",
-      "llm",
-      "unsloth"
-    ],
+    "tags": ["fine-tuning", "qlora", "llm", "unsloth"],
     "author": "Akshay More",
     "featured": false,
     "coverImage": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1600&q=80",
@@ -132,12 +128,7 @@
     "publishedDate": "2025-12-03",
     "readingTime": "5 min read",
     "category": "Projects",
-    "tags": [
-      "deployment",
-      "vercel",
-      "railway",
-      "langgraph"
-    ],
+    "tags": ["deployment", "vercel", "railway", "langgraph"],
     "author": "Akshay More",
     "featured": false,
     "coverImage": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80",
@@ -150,12 +141,7 @@
     "publishedDate": "2026-01-18",
     "readingTime": "6 min read",
     "category": "Automation",
-    "tags": [
-      "n8n",
-      "ollama",
-      "automation",
-      "notion"
-    ],
+    "tags": ["n8n", "ollama", "automation", "notion"],
     "author": "Akshay More",
     "featured": false,
     "coverImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80",
@@ -168,12 +154,7 @@
     "publishedDate": "2026-01-05",
     "readingTime": "7 min read",
     "category": "Tutorials",
-    "tags": [
-      "rag",
-      "embeddings",
-      "chromadb",
-      "faiss"
-    ],
+    "tags": ["rag", "embeddings", "chromadb", "faiss"],
     "author": "Akshay More",
     "featured": false,
     "coverImage": "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=1600&q=80",
@@ -186,12 +167,7 @@
     "publishedDate": "2025-09-28",
     "readingTime": "6 min read",
     "category": "Projects",
-    "tags": [
-      "python",
-      "trading",
-      "binance",
-      "api"
-    ],
+    "tags": ["python", "trading", "binance", "api"],
     "author": "Akshay More",
     "featured": false,
     "coverImage": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1600&q=80",
@@ -204,12 +180,7 @@
     "publishedDate": "2025-09-10",
     "readingTime": "7 min read",
     "category": "Web Development",
-    "tags": [
-      "fastapi",
-      "docker",
-      "streamlit",
-      "ci-cd"
-    ],
+    "tags": ["fastapi", "docker", "streamlit", "ci-cd"],
     "author": "Akshay More",
     "featured": false,
     "coverImage": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1600&q=80",
