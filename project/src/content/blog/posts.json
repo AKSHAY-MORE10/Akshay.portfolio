@@ -26,6 +26,19 @@
     "content": "# What Overfitting Actually Taught Me About My First ML Model\n\nI was building my first ML model. Training accuracy: 99%. Validation accuracy: 58%. Classic overfitting.\n\n## What overfitting actually is\n\nOverfitting is when a model memorizes the training data so well that it fails on anything new. It's the equivalent of a student who mugs up last year's question paper word for word, then freezes when the exam has one new question. Perfect on what it already knows, a disaster in the real world.\n\n## What I tried first (and why it didn't work)\n\n- Changed the learning rate.\n- Adjusted batch size.\n- Tried different optimizers.\n\nNone of it worked, because none of it addressed why the model was memorizing instead of learning.\n\n## The actual fixes\n\n1. **Dropout** — randomly switches off neurons during training so the model can't just memorize, forcing it to learn actual patterns.\n2. **Regularization (L1/L2)** — adds a penalty for complexity, discouraging the model from overfitting to noise.\n3. **More data** — obvious, but the most effective lever. A model that has seen more examples generalizes better.\n4. **Early stopping** — stop training once validation loss stops improving, instead of letting it over-study the training set.\n\n## Takeaway\n\nA model that only performs well on training data is useless. Generalization is everything, in ML and, honestly, in life."
   },
   {
+    "title": "AI Didn't Make My Work Cheaper. It Made Me Faster.",
+    "slug": "ai-didnt-make-my-work-cheaper-it-made-me-faster",
+    "description": "A follow-up on AI and pricing: why speed and responsibility are different things, and only one of them sets the price.",
+    "publishedDate": "2026-07-30",
+    "readingTime": "4 min read",
+    "category": "Career",
+    "tags": ["ai", "pricing", "career", "reality-check"],
+    "author": "Akshay More",
+    "featured": false,
+    "coverImage": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80",
+    "content": "# AI Didn't Make My Work Cheaper. It Made Me Faster.\n\nAfter my last post on AI and where the leverage is shifting, a few founders pushed back with a fair question: if AI helps you build faster, shouldn't the price go down?\n\n## What AI actually removes\n\nAI doesn't replace thinking. It doesn't understand a business context on its own, and it doesn't take responsibility for whether the delivered system actually works. What it removes is repetition, the mechanical part of the work that used to eat hours.\n\n## What you're still paying for\n\nThe real value was never in the typing. It's in:\n\n- Scoping the right solution for the actual problem.\n- Designing a system that holds up under real conditions.\n- Handling the edge cases nobody mentions in the spec.\n- Making sure the outcome matches what was promised.\n\n> You don't pay a lawyer for typing speed. You don't pay a surgeon for hand movement. You pay for judgment, experience, and outcomes.\n\n## Speed and responsibility are different axes\n\nAI compresses time. It does not compress responsibility. Those are two separate variables, and pricing has always tracked the second one, not the first.\n\n## Takeaway\n\nFounders building for the long term tend to understand this distinction instinctively: faster delivery is a nice side effect of better tools, but what they're actually buying is someone willing to own the outcome."
+  },
+  {
     "title": "The AI Opportunity Is Shifting: From Building to Organizing",
     "slug": "ai-opportunity-shifting-building-to-organizing",
     "description": "A reality check on where AI leverage is actually moving as tools get cheaper and execution gets commoditized.",
