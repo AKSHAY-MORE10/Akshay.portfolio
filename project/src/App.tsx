@@ -3,7 +3,7 @@ import { Home, User, Briefcase, FileText } from "lucide-react";
 import { NavBar } from "./components/ui/tubelight-navbar";
 import { ThemeProvider } from "./context/ThemeContext";
 import { SplashCursor } from "./components/ui/splash-cursor";
-import { AboutSection } from "./components/ui/about";
+// import { AboutSection } from "./components/ui/about";
 import Hero from "./components/Hero";
 import { Footer } from "./components/ui/footer-section";
 import { TimelineSection } from "./components/TimelineSection";
@@ -18,7 +18,7 @@ import { AiIntegrationsPage } from "./pages/services/AiIntegrationsPage";
 import { BlogIndexPage } from "./pages/blog/BlogIndexPage";
 import { BlogPostPage } from "./pages/blog/BlogPostPage";
 import { ServicesSection } from "./components/ServicesSection";
-import { TestimonialsSection } from "./components/blocks/testimonials-with-marquee";
+// import { TestimonialsSection } from "./components/blocks/testimonials-with-marquee";
 
 function normalizePath(pathname: string) {
   return pathname.replace(/\/+$/, "") || "/";
