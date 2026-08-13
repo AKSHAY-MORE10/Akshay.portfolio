@@ -2,9 +2,9 @@ import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from "react-icons/fa";
 
 export default function Hero() {
   return (
-<section
-  id="home"
-  className="
+    <section
+      id="home"
+      className="
     min-h-[70vh]
     lg:min-h-[85vh]
     w-full
@@ -12,34 +12,28 @@ export default function Hero() {
     px-6 sm:px-10 lg:px-20
     pt-0 sm:pt-0
   "
->
-
-
+    >
       <div className="w-full max-w-7xl mx-auto">
         <div className="max-w-6xl space-y-2">
           {/* Hero Heading */}
           <h1
-  className="
+            className="
     font-bosch font-light tracking-tight
     leading-snug sm:leading-tight
     text-[2.35rem] sm:text-4xl md:text-5xl lg:text-7xl
     text-gray-800 dark:text-gray-200 opacity-90
   "
->
-  <span className="font-semibold block">
-    We build madness.
-  </span>
+          >
+            <span className="font-semibold block">We build madness.</span>
 
-  <span className="font-semibold block">
-    Half human, half caffeine — all genius.
-  </span>
+            <span className="font-semibold block">
+              Half human, half caffeine — all genius.
+            </span>
 
-  <span className="font-semibold block">
-    Slide into our inbox before reality collapses.
-  </span>
-</h1>
-
-
+            <span className="font-semibold block">
+              Slide into our inbox before reality collapses.
+            </span>
+          </h1>
 
           {/* Sub Text */}
           <p
