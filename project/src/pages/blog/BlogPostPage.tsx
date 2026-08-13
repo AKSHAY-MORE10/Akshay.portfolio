@@ -1,4 +1,4 @@
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 import {
   ArrowLeft,
   CalendarDays,
@@ -8,11 +8,11 @@ import {
   Link2,
   Share2,
   Tag,
-} from "lucide-react"
-import { useEffect, useMemo, useState, type ReactNode } from "react"
-import ReactMarkdown from "react-markdown"
-import rehypeHighlight from "rehype-highlight"
-import remarkGfm from "remark-gfm"
+} from "lucide-react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
+import ReactMarkdown from "react-markdown";
+import rehypeHighlight from "rehype-highlight";
+import remarkGfm from "remark-gfm";
 import {
   extractBlogHeadings,
   formatBlogDate,
@@ -20,23 +20,29 @@ import {
   getBlogPostBySlug,
   slugifyHeading,
   type BlogPost,
-} from "@/content/blog"
+} from "@/content/blog";
 
 interface BlogPostPageProps {
-  slug: string
-  onNavigate: (path: string) => void
+  slug: string;
+  onNavigate: (path: string) => void;
 }
 
-function CodeBlock({ className, children }: { className?: string; children: ReactNode }) {
-  const [copied, setCopied] = useState(false)
-  const code = String(children).replace(/\n$/, "")
-  const language = className?.replace("language-", "") ?? "text"
+function CodeBlock({
+  className,
+  children,
+}: {
+  className?: string;
+  children: ReactNode;
+}) {
+  const [copied, setCopied] = useState(false);
+  const code = String(children).replace(/\n$/, "");
+  const language = className?.replace("language-", "") ?? "text";
 
   const copyCode = async () => {
-    await navigator.clipboard.writeText(code)
-    setCopied(true)
-    window.setTimeout(() => setCopied(false), 1400)
-  }
+    await navigator.clipboard.writeText(code);
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 1400);
+  };
 
   return (
     <div className="relative my-6 overflow-hidden rounded-2xl border border-border/60 bg-[#0f111a]">
@@ -55,43 +61,59 @@ function CodeBlock({ className, children }: { className?: string; children: Reac
         <code className={className}>{children}</code>
       </pre>
     </div>
-  )
+  );
 }
 
-function renderHeading(level: 1 | 2 | 3 | 4, children: ReactNode, className?: string) {
-  const text = typeof children === "string" ? children : String(children)
-  const id = slugifyHeading(text)
-  const baseClass = "scroll-mt-28 font-semibold tracking-tight text-foreground"
+function renderHeading(
+  level: 1 | 2 | 3 | 4,
+  children: ReactNode,
+  className?: string,
+) {
+  const text = typeof children === "string" ? children : String(children);
+  const id = slugifyHeading(text);
+  const baseClass = "scroll-mt-28 font-semibold tracking-tight text-foreground";
 
   if (level === 1) {
     return (
-      <h1 id={id} className={`${baseClass} text-4xl sm:text-5xl lg:text-6xl ${className ?? ""}`.trim()}>
+      <h1
+        id={id}
+        className={`${baseClass} text-4xl sm:text-5xl lg:text-6xl ${className ?? ""}`.trim()}
+      >
         {children}
       </h1>
-    )
+    );
   }
 
   if (level === 2) {
     return (
-      <h2 id={id} className={`${baseClass} mt-12 text-2xl sm:text-3xl ${className ?? ""}`.trim()}>
+      <h2
+        id={id}
+        className={`${baseClass} mt-12 text-2xl sm:text-3xl ${className ?? ""}`.trim()}
+      >
         {children}
       </h2>
-    )
+    );
   }
 
   if (level === 3) {
     return (
-      <h3 id={id} className={`${baseClass} mt-8 text-xl ${className ?? ""}`.trim()}>
+      <h3
+        id={id}
+        className={`${baseClass} mt-8 text-xl ${className ?? ""}`.trim()}
+      >
         {children}
       </h3>
-    )
+    );
   }
 
   return (
-    <h4 id={id} className={`${baseClass} mt-6 text-lg ${className ?? ""}`.trim()}>
+    <h4
+      id={id}
+      className={`${baseClass} mt-6 text-lg ${className ?? ""}`.trim()}
+    >
       {children}
     </h4>
-  )
+  );
 }
 
 function updateMetaTag(selector: string, attribute: string, value: string) {
@@ -99,51 +121,62 @@ function updateMetaTag(selector: string, attribute: string, value: string) {
     | HTMLMetaElement
     | HTMLLinkElement
     | HTMLScriptElement
-    | null
+    | null;
 
   if (!element) {
-    const isScript = selector.includes("script")
-    const isLink = selector.includes("link")
-    const nameMatch = selector.match(/name="([^"]+)"/)
-    const propertyMatch = selector.match(/property="([^"]+)"/)
+    const isScript = selector.includes("script");
+    const isLink = selector.includes("link");
+    const nameMatch = selector.match(/name="([^"]+)"/);
+    const propertyMatch = selector.match(/property="([^"]+)"/);
 
-    element = document.createElement(isScript ? "script" : isLink ? "link" : "meta")
+    element = document.createElement(
+      isScript ? "script" : isLink ? "link" : "meta",
+    );
 
     if (isLink) {
-      ;(element as HTMLLinkElement).rel = "canonical"
+      (element as HTMLLinkElement).rel = "canonical";
     } else if (nameMatch) {
-      element.setAttribute("name", nameMatch[1])
+      element.setAttribute("name", nameMatch[1]);
     } else if (propertyMatch) {
-      element.setAttribute("property", propertyMatch[1])
+      element.setAttribute("property", propertyMatch[1]);
     }
 
-    document.head.appendChild(element)
+    document.head.appendChild(element);
   }
 
   if (attribute === "content") {
-    ;(element as HTMLMetaElement).content = value
+    (element as HTMLMetaElement).content = value;
   } else if (attribute === "href") {
-    ;(element as HTMLLinkElement).href = value
+    (element as HTMLLinkElement).href = value;
   } else {
-    element.setAttribute(attribute, value)
+    element.setAttribute(attribute, value);
   }
 }
 
 function buildAbsoluteUrl(pathname: string) {
-  return `${window.location.origin}${pathname}`
+  return `${window.location.origin}${pathname}`;
 }
 
-function TableOfContents({ headings }: { headings: ReturnType<typeof extractBlogHeadings> }) {
-  if (headings.length === 0) return null
+function TableOfContents({
+  headings,
+}: {
+  headings: ReturnType<typeof extractBlogHeadings>;
+}) {
+  if (headings.length === 0) return null;
 
   return (
     <aside className="hidden xl:block xl:sticky xl:top-28 xl:h-fit">
       <div className="rounded-3xl border border-border/60 bg-background/80 p-5 backdrop-blur">
-        <p className="text-xs font-medium uppercase tracking-[0.3em] text-muted-foreground">On this page</p>
+        <p className="text-xs font-medium uppercase tracking-[0.3em] text-muted-foreground">
+          On this page
+        </p>
         <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
           {headings.map((heading) => (
             <li key={heading.id} className={heading.depth > 2 ? "pl-3" : ""}>
-              <a className="transition hover:text-foreground" href={`#${heading.id}`}>
+              <a
+                className="transition hover:text-foreground"
+                href={`#${heading.id}`}
+              >
                 {heading.text}
               </a>
             </li>
@@ -151,7 +184,7 @@ function TableOfContents({ headings }: { headings: ReturnType<typeof extractBlog
         </ul>
       </div>
     </aside>
-  )
+  );
 }
 
 function MarkdownContent({ content }: { content: string }) {
@@ -167,9 +200,7 @@ function MarkdownContent({ content }: { content: string }) {
           h4: ({ children }) => renderHeading(4, children),
 
           p: ({ children }) => (
-            <p className="my-5 leading-8 text-muted-foreground">
-              {children}
-            </p>
+            <p className="my-5 leading-8 text-muted-foreground">{children}</p>
           ),
 
           a: ({ children, href }) => (
@@ -180,9 +211,7 @@ function MarkdownContent({ content }: { content: string }) {
               className="inline-flex items-center gap-1 border-b border-current pb-0.5 text-foreground transition hover:text-primary"
             >
               {children}
-              {href?.startsWith("http") && (
-                <Link2 className="size-3.5" />
-              )}
+              {href?.startsWith("http") && <Link2 className="size-3.5" />}
             </a>
           ),
 
@@ -198,11 +227,7 @@ function MarkdownContent({ content }: { content: string }) {
             </ol>
           ),
 
-          li: ({ children }) => (
-            <li className="leading-7">
-              {children}
-            </li>
-          ),
+          li: ({ children }) => <li className="leading-7">{children}</li>,
 
           blockquote: ({ children }) => (
             <blockquote className="my-6 border-l-2 border-foreground/20 pl-5 italic text-foreground/90">
@@ -224,11 +249,7 @@ function MarkdownContent({ content }: { content: string }) {
 
             // Block code
             if (className) {
-              return (
-                <CodeBlock className={className}>
-                  {children}
-                </CodeBlock>
-              );
+              return <CodeBlock className={className}>{children}</CodeBlock>;
             }
 
             // Inline code
@@ -257,68 +278,91 @@ function ArticleMeta({ post }: { post: BlogPost }) {
       <span>{post.category}</span>
       <span>By {post.author}</span>
     </div>
-  )
+  );
 }
 
 export function BlogPostPage({ slug, onNavigate }: BlogPostPageProps) {
-  const post = getBlogPostBySlug(slug)
-  const headings = useMemo(() => (post ? extractBlogHeadings(post.content) : []), [post])
-  const [progress, setProgress] = useState(0)
+  const post = getBlogPostBySlug(slug);
+  const headings = useMemo(
+    () => (post ? extractBlogHeadings(post.content) : []),
+    [post],
+  );
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    if (!post) return
+    if (!post) return;
 
-    document.title = `${post.title} | Akshay More`
-    updateMetaTag('meta[name="description"]', 'content', post.description)
-    updateMetaTag('meta[property="og:title"]', 'content', post.title)
-    updateMetaTag('meta[property="og:description"]', 'content', post.description)
-    updateMetaTag('meta[property="og:type"]', 'content', 'article')
-    updateMetaTag('meta[name="twitter:card"]', 'content', 'summary_large_image')
-    updateMetaTag('meta[name="twitter:title"]', 'content', post.title)
-    updateMetaTag('meta[name="twitter:description"]', 'content', post.description)
-    updateMetaTag('link[rel="canonical"]', 'href', buildAbsoluteUrl(`/blog/${post.slug}`))
+    document.title = `${post.title} | Akshay More`;
+    updateMetaTag('meta[name="description"]', "content", post.description);
+    updateMetaTag('meta[property="og:title"]', "content", post.title);
+    updateMetaTag(
+      'meta[property="og:description"]',
+      "content",
+      post.description,
+    );
+    updateMetaTag('meta[property="og:type"]', "content", "article");
+    updateMetaTag(
+      'meta[name="twitter:card"]',
+      "content",
+      "summary_large_image",
+    );
+    updateMetaTag('meta[name="twitter:title"]', "content", post.title);
+    updateMetaTag(
+      'meta[name="twitter:description"]',
+      "content",
+      post.description,
+    );
+    updateMetaTag(
+      'link[rel="canonical"]',
+      "href",
+      buildAbsoluteUrl(`/blog/${post.slug}`),
+    );
 
     const jsonLd = {
-      '@context': 'https://schema.org',
-      '@type': 'BlogPosting',
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
       headline: post.title,
       description: post.description,
       author: {
-        '@type': 'Person',
+        "@type": "Person",
         name: post.author,
       },
       datePublished: post.publishedDate,
       dateModified: post.publishedDate,
       mainEntityOfPage: buildAbsoluteUrl(`/blog/${post.slug}`),
       image: post.coverImage,
-    }
+    };
 
-    let script = document.getElementById('blog-json-ld') as HTMLScriptElement | null
+    let script = document.getElementById(
+      "blog-json-ld",
+    ) as HTMLScriptElement | null;
     if (!script) {
-      script = document.createElement('script')
-      script.id = 'blog-json-ld'
-      script.type = 'application/ld+json'
-      document.head.appendChild(script)
+      script = document.createElement("script");
+      script.id = "blog-json-ld";
+      script.type = "application/ld+json";
+      document.head.appendChild(script);
     }
-    script.textContent = JSON.stringify(jsonLd)
+    script.textContent = JSON.stringify(jsonLd);
 
     return () => {
-      script?.remove()
-    }
-  }, [post])
+      script?.remove();
+    };
+  }, [post]);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY
-      const documentHeight = document.documentElement.scrollHeight - window.innerHeight
-      const nextProgress = documentHeight > 0 ? (scrollTop / documentHeight) * 100 : 0
-      setProgress(nextProgress)
-    }
+      const scrollTop = window.scrollY;
+      const documentHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const nextProgress =
+        documentHeight > 0 ? (scrollTop / documentHeight) * 100 : 0;
+      setProgress(nextProgress);
+    };
 
-    handleScroll()
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   if (!post) {
     return (
@@ -326,29 +370,31 @@ export function BlogPostPage({ slug, onNavigate }: BlogPostPageProps) {
         <div className="mx-auto max-w-4xl">
           <button
             type="button"
-            onClick={() => onNavigate('/blog')}
+            onClick={() => onNavigate("/blog")}
             className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background px-4 py-2 text-sm font-medium transition hover:border-primary/40 hover:text-primary"
           >
             <ArrowLeft className="size-4" />
             Back to writings
           </button>
-          <h1 className="mt-10 text-4xl font-semibold tracking-tight">Article not found</h1>
+          <h1 className="mt-10 text-4xl font-semibold tracking-tight">
+            Article not found
+          </h1>
         </div>
       </main>
-    )
+    );
   }
 
-  const { previous, next } = getAdjacentBlogPosts(post.slug)
+  const { previous, next } = getAdjacentBlogPosts(post.slug);
 
   const shareArticle = async () => {
-    const url = buildAbsoluteUrl(`/blog/${post.slug}`)
+    const url = buildAbsoluteUrl(`/blog/${post.slug}`);
     if (navigator.share) {
-      await navigator.share({ title: post.title, text: post.description, url })
-      return
+      await navigator.share({ title: post.title, text: post.description, url });
+      return;
     }
 
-    await navigator.clipboard.writeText(url)
-  }
+    await navigator.clipboard.writeText(url);
+  };
 
   return (
     <motion.main
@@ -360,7 +406,10 @@ export function BlogPostPage({ slug, onNavigate }: BlogPostPageProps) {
       className="min-h-screen bg-background text-foreground"
     >
       <div className="fixed left-0 top-0 z-50 h-1 w-full bg-border/40">
-        <div className="h-full bg-foreground transition-[width] duration-150" style={{ width: `${progress}%` }} />
+        <div
+          className="h-full bg-foreground transition-[width] duration-150"
+          style={{ width: `${progress}%` }}
+        />
       </div>
 
       <section className="px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
@@ -368,7 +417,7 @@ export function BlogPostPage({ slug, onNavigate }: BlogPostPageProps) {
           <div>
             <button
               type="button"
-              onClick={() => onNavigate('/blog')}
+              onClick={() => onNavigate("/blog")}
               className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/80 px-4 py-2 text-sm font-medium text-foreground transition hover:border-primary/40 hover:text-primary"
             >
               <ArrowLeft className="size-4" />
@@ -435,7 +484,9 @@ export function BlogPostPage({ slug, onNavigate }: BlogPostPageProps) {
               <div className="mt-16 grid gap-4 border-t border-border/60 pt-8 sm:grid-cols-2">
                 <button
                   type="button"
-                  onClick={() => previous && onNavigate(`/blog/${previous.slug}`)}
+                  onClick={() =>
+                    previous && onNavigate(`/blog/${previous.slug}`)
+                  }
                   disabled={!previous}
                   className="group flex min-h-24 flex-col justify-between rounded-3xl border border-border/60 p-5 text-left transition hover:border-foreground/20 disabled:cursor-not-allowed disabled:opacity-40"
                 >
@@ -444,9 +495,13 @@ export function BlogPostPage({ slug, onNavigate }: BlogPostPageProps) {
                     Previous
                   </span>
                   {previous ? (
-                    <span className="mt-3 text-base font-medium leading-7">{previous.title}</span>
+                    <span className="mt-3 text-base font-medium leading-7">
+                      {previous.title}
+                    </span>
                   ) : (
-                    <span className="mt-3 text-base font-medium leading-7">No previous article</span>
+                    <span className="mt-3 text-base font-medium leading-7">
+                      No previous article
+                    </span>
                   )}
                 </button>
 
@@ -461,9 +516,13 @@ export function BlogPostPage({ slug, onNavigate }: BlogPostPageProps) {
                     <ChevronRight className="size-4" />
                   </span>
                   {next ? (
-                    <span className="mt-3 text-base font-medium leading-7">{next.title}</span>
+                    <span className="mt-3 text-base font-medium leading-7">
+                      {next.title}
+                    </span>
                   ) : (
-                    <span className="mt-3 text-base font-medium leading-7">No next article</span>
+                    <span className="mt-3 text-base font-medium leading-7">
+                      No next article
+                    </span>
                   )}
                 </button>
               </div>
@@ -474,5 +533,5 @@ export function BlogPostPage({ slug, onNavigate }: BlogPostPageProps) {
         </div>
       </section>
     </motion.main>
-  )
+  );
 }
