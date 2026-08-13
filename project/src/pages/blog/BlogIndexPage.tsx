@@ -1,20 +1,34 @@
-import { motion } from "framer-motion"
-import { ArrowRight, Search } from "lucide-react"
-import { useMemo, useState } from "react"
+import { motion } from "framer-motion";
+import { ArrowRight, Search } from "lucide-react";
+import { useMemo, useState } from "react";
 import {
   formatBlogDate,
   getBlogPosts,
   getBlogSearchIndex,
   type BlogPost,
-} from "@/content/blog"
+} from "@/content/blog";
 
 interface BlogIndexPageProps {
-  onNavigate: (path: string) => void
+  onNavigate: (path: string) => void;
 }
 
-const filters = ["All", "AI", "Web Development", "Automation", "Career", "Tutorials", "Projects"]
+const filters = [
+  "All",
+  "AI",
+  "Web Development",
+  "Automation",
+  "Career",
+  "Tutorials",
+  "Projects",
+];
 
-function BlogRow({ post, onNavigate }: { post: BlogPost; onNavigate: (path: string) => void }) {
+function BlogRow({
+  post,
+  onNavigate,
+}: {
+  post: BlogPost;
+  onNavigate: (path: string) => void;
+}) {
   return (
     <button
       type="button"
@@ -22,7 +36,9 @@ function BlogRow({ post, onNavigate }: { post: BlogPost; onNavigate: (path: stri
       className="group flex w-full  cursor-pointer flex-col gap-3 border-b border-border/60 py-5 text-left transition-transform duration-300 hover:-translate-y-0.5 sm:flex-row sm:items-center sm:justify-between sm:gap-8"
     >
       <div className="space-y-1">
-        <p className="text-sm text-muted-foreground sm:text-base">{formatBlogDate(post.publishedDate)}</p>
+        <p className="text-sm text-muted-foreground sm:text-base">
+          {formatBlogDate(post.publishedDate)}
+        </p>
         <h3 className="relative inline-block text-lg font-medium leading-tight tracking-tight text-foreground sm:text-xl">
           <span className="relative">
             {post.title}
@@ -30,36 +46,40 @@ function BlogRow({ post, onNavigate }: { post: BlogPost; onNavigate: (path: stri
           </span>
         </h3>
       </div>
-      <p className="text-sm text-muted-foreground sm:text-base">{post.readingTime}</p>
+      <p className="text-sm text-muted-foreground sm:text-base">
+        {post.readingTime}
+      </p>
     </button>
-  )
+  );
 }
 
 export function BlogIndexPage({ onNavigate }: BlogIndexPageProps) {
-  const [query, setQuery] = useState("")
-  const [activeFilter, setActiveFilter] = useState("All")
+  const [query, setQuery] = useState("");
+  const [activeFilter, setActiveFilter] = useState("All");
 
-  const posts = getBlogPosts()
+  const posts = getBlogPosts();
 
   const filteredPosts = useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase()
+    const normalizedQuery = query.trim().toLowerCase();
 
     return posts.filter((post) => {
-      const matchesFilter = activeFilter === "All" || post.category === activeFilter
+      const matchesFilter =
+        activeFilter === "All" || post.category === activeFilter;
       const matchesQuery =
-        normalizedQuery.length === 0 || getBlogSearchIndex(post).includes(normalizedQuery)
+        normalizedQuery.length === 0 ||
+        getBlogSearchIndex(post).includes(normalizedQuery);
 
-      return matchesFilter && matchesQuery
-    })
-  }, [activeFilter, posts, query])
+      return matchesFilter && matchesQuery;
+    });
+  }, [activeFilter, posts, query]);
 
   const featuredPost =
     filteredPosts.length > 0
-      ? filteredPosts.find((post) => post.featured) ?? filteredPosts[0]
-      : undefined
+      ? (filteredPosts.find((post) => post.featured) ?? filteredPosts[0])
+      : undefined;
   const visiblePosts = featuredPost
     ? filteredPosts.filter((post) => post.slug !== featuredPost.slug)
-    : filteredPosts
+    : filteredPosts;
 
   return (
     <motion.main
@@ -89,7 +109,8 @@ export function BlogIndexPage({ onNavigate }: BlogIndexPageProps) {
               Latest writings
             </h1>
             <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Notes on AI, web development, automation, and the systems behind a clean portfolio.
+              Notes on AI, web development, automation, and the systems behind a
+              clean portfolio.
             </p>
           </div>
 
@@ -106,7 +127,7 @@ export function BlogIndexPage({ onNavigate }: BlogIndexPageProps) {
 
             <div className="flex flex-wrap gap-2">
               {filters.map((filter) => {
-                const isActive = filter === activeFilter
+                const isActive = filter === activeFilter;
 
                 return (
                   <button
@@ -121,7 +142,7 @@ export function BlogIndexPage({ onNavigate }: BlogIndexPageProps) {
                   >
                     {filter}
                   </button>
-                )
+                );
               })}
             </div>
           </div>
@@ -182,5 +203,5 @@ export function BlogIndexPage({ onNavigate }: BlogIndexPageProps) {
         </div>
       </section>
     </motion.main>
-  )
+  );
 }
