@@ -128,7 +128,7 @@ function App() {
           <NavBar items={navItems} className="h-fit" />
           <main className="pt-8 lg:pt-20">
             <Hero />
-            <div className="w-full px-4">
+            <div id="about" className="w-full px-4">
               <TimelineSection />
             </div>
             <Projects />
