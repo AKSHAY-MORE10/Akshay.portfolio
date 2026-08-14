@@ -179,7 +179,7 @@ export function NavBar({ items, className }: NavBarProps) {
             </a>
           )
         })}
-        <a
+        {/* <a
           href="https://github.com/AKSHAY-MORE10"
           target="_blank"
           rel="noopener noreferrer"
@@ -187,7 +187,7 @@ export function NavBar({ items, className }: NavBarProps) {
           aria-label="Visit my GitHub profile"
         >
           GitHub
-        </a>
+        </a> */}
         <button
           onClick={toggleTheme}
           className="ml-2 p-2 rounded-full bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
