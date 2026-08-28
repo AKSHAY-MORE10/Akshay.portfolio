@@ -23,7 +23,7 @@ export default function Hero() {
           text-gray-800 dark:text-gray-200
         "
       >
-        <span className="font-semibold block text-[2.35rem] sm:text-4xl md:text-5xl lg:text-7xl opacity-90">
+        <span className="font-semibold block text-[2.35rem] sm:text-4xl md:text-5xl lg:text-8xl opacity-90">
           Scalable systems, built with care.
         </span>
 
