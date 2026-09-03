@@ -34,7 +34,7 @@ export function Footer() {
         </h3>
 
         <p className="text-sm leading-relaxed text-muted-foreground max-w-sm">
-          I'm Akshay — a Web Developer, automation builder, and AI explorer.
+          I'm Akshay - a Web Developer, automation builder, and AI explorer.
           Thanks for visiting my portfolio!
         </p>
 
